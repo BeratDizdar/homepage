@@ -2,15 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LambdaNull Homepage</title>
 </head>
+<style>
+    a {
+        font-family:'Courier New', Courier, monospace;
+        color: rgb(179, 255, 0);
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-text-stroke: 1px rgb(0, 0, 0);
+    }
+    a:hover {
+        color: rgb(255, 0, 0);
+        filter: brightness(10);
+    }
+    h1, h2 {
+        font-size: 5vw;
+        text-align: center;
+        -webkit-text-stroke: 0.2px rgb(255, 0, 0);
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    ul, ol, li { text-align: center; }
+    .btn { font-size: 2vw; }
+    @font-face {
+        font-family: "AKUMA";
+        src: url("WAD/fonts/AKUMA.ttf") format("truetype");
+    }
+    body {
+        background-image: url("WAD/background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: "AKUMA", sans-serif;
+    }
+
+</style>
 <body>
 
     <h1>LambdaNull Homepage</h1>
     
     <h2>Cool Softwares</h2>
     <ul>
-        <li><a href="WAD/glsl_viewer/glsl_viewer.exe" download class="btn">GLSL Viewer</a></li>
+        <li><a href="WAD/apps/glsl_viewer.exe" download class="btn">GLSL Viewer</a></li>
+    </ul>
+    
+    <h2>Cool Libraries</h2>
+    <ul>
+        <li><a href="WAD/libraries/Script.tar.gz" download class="btn">[C++] ScriptClass (Lua)</a></li>
     </ul>
 
 </body>
