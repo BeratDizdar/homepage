@@ -1,0 +1,123 @@
+<head><title>D3D9</title></head>
+<!-- https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 -->
+<style>
+    pre {font-size:x-large; background: #1d3557; color:#f1faee}
+    pre {
+        word-wrap: break-word; white-space: pre-wrap;
+        max-width: 80%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+    button {
+        font-size: inherit;
+        font-family: inherit;
+        border-style: hidden;
+        background: transparent;
+        vertical-align: baseline;
+        padding: 0;
+        color: #e63946;
+    }
+    button:hover { text-decoration: underline; color:#a8dadc; cursor: pointer;}
+    a { text-decoration: none; color:#e63946 }
+    a:hover { text-decoration: underline; color:#a8dadc }
+    .pop { font-size: x-large; background: #000000; color: #e63946; }
+</style>
+<body style="background: #1d3557;">
+<code>
+<a style="font-size:24px; color: #db4747;" href="index.html"><- Homepage</a>
+<pre>
+    Win32 api ile program yazmak o her örnekte gördüğünüz upuzun <button popovertarget="pop-WinMain">WinMain</button> giriş fonksiyonunu yazmanıza gerek yok. Bunun yerine main fonksiyonunun içinde, programın örneğini alabilirsiniz. Bunu yapmak için <button popovertarget="pop-GetModuleHandleA">GetModuleHandleA</button> fonksiyonunu kullanmalısınız. Argüman olarak NULL gönderirseniz şuanda kullandığınız programı döndürür.
+    Pencere yaratmamızı sağlaması için bir <button popovertarget="pop-WNDCLASSA">WNDCLASSA</button> yapısına ihtiyacımız var. Bunu yaratıp içini doldurmalıyız. Eğer her detayla uğraşmak istemezseniz minimal olarak şunları doldurabilirsiniz: .hInstance, .lpfnWndProc, .lpszClassName. Fakat burada önemli bir nokta var. Döngünün düzgün sağlanması için lpfnWndPoc'a vereceğimiz bir <button popovertarget="pop-Callback">callback fonksiyonu</button> oluşturmanız lazım. Ardından bu sınıfı <button popovertarget="pop-RegisterClassA">RegisterClassA</button> fonksiyonu ile kayıt ettirmemiz gerekiyor.
+    Artık pencere yaratma aşamasına geçebiliriz. <button popovertarget="pop-CreateWindowExA">CreateWindowExA</button> fonksiyonunu kullarak pencereyi yaratıp ondan sorumlu adresi alıyoruz. Bu adres OpenGL, DirectX gibi arayüzler ile uğraşırken çok gerekli olacak.
+    Ha unutmadan bir de şundan bahsetmek gerek, program döngüsünde pencereyi güncellemekten sorumlu bir <button popovertarget="pop-MSG">mesaj döngüsü</button> oluşturmamız lazım
+
+</pre>
+<!-- POPOVER -->
+<pre class="pop" id="pop-WinMain" popover>
+int __clrcall WinMain(
+    [in]           HINSTANCE hInstance,
+    [in, optional] HINSTANCE hPrevInstance,
+    [in]           LPSTR     lpCmdLine,
+    [in]           int       nShowCmd
+);
+</pre>
+<pre class="pop" id="pop-GetModuleHandleA" popover>
+HMODULE GetModuleHandleA(
+    [in, optional] LPCSTR lpModuleName
+);
+
+Header: libloaderapi.h (include Windows.h)
+Library: Kernel32.lib
+</pre>
+<pre class="pop" id="pop-WNDCLASSA" popover>
+typedef struct tagWNDCLASSA {
+    UINT      style;
+    WNDPROC   lpfnWndProc;
+    int       cbClsExtra;
+    int       cbWndExtra;
+    HINSTANCE hInstance;
+    HICON     hIcon;
+    HCURSOR   hCursor;
+    HBRUSH    hbrBackground;
+    LPCSTR    lpszMenuName;
+    LPCSTR    lpszClassName;
+} WNDCLASSA, *PWNDCLASSA, *NPWNDCLASSA, *LPWNDCLASSA;
+
+Header: winuser.h (include Windows.h)
+</pre>
+<pre class="pop" id="pop-Callback" popover>
+Example:
+static LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam) {
+    switch (umessage) {
+    case WM_DESTROY: PostQuitMessage(0); return 0;
+    case WM_CLOSE: DestroyWindow(hwnd); return 0;
+    default: return DefWindowProc(hwnd, umessage, wparam, lparam);
+    }
+}
+</pre>
+<pre class="pop" id="pop-RegisterClassA" popover>
+ATOM RegisterClassA(
+    [in] const WNDCLASSA *lpWndClass
+);
+
+Header: winuser.h (include Windows.h)
+Library: User32.lib
+</pre>
+<pre class="pop" id="pop-CreateWindowExA" popover>
+HWND CreateWindowExA(
+    [in]           DWORD     dwExStyle,
+    [in, optional] LPCSTR    lpClassName,
+    [in, optional] LPCSTR    lpWindowName,
+    [in]           DWORD     dwStyle,
+    [in]           int       X,
+    [in]           int       Y,
+    [in]           int       nWidth,
+    [in]           int       nHeight,
+    [in, optional] HWND      hWndParent,
+    [in, optional] HMENU     hMenu,
+    [in, optional] HINSTANCE hInstance,
+    [in, optional] LPVOID    lpParam
+);
+
+Header: winuser.h (include Windows.h)
+Library: User32.lib
+
+Example:
+HWND hwnd = CreateWindowExA(
+    WS_EX_APPWINDOW, wnd.lpszClassName, title,
+    WS_POPUP | WS_VISIBLE, x, y, w, h,
+    NULL, NULL, module, NULL);
+</pre>
+<pre class="pop" id="pop-MSG" popover>
+Example:
+...
+MSG msg{};
+while (PeekMessage(&msg, m_hwnd, 0, 0, PM_REMOVE)) {
+    TranslateMessage(&msg);
+    DispatchMessage(&msg);
+}
+...
+</pre>
+
+</code>
+</body>

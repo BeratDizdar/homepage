@@ -1,0 +1,1398 @@
+<head><title>D3D9</title></head>
+<style>
+    table, pre, ul {font-size:x-large; background: #151515; color:#ffffff}
+    pre {word-wrap: break-word; white-space: pre-wrap;}
+    .head, h1 {color: #db4747; padding-top: 24px;}
+    td {padding-left: 24px; padding-bottom: 2px;}
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    td a, li a { color: #ffffff; }
+    td a:hover, li a:hover { color: #db4747; }
+    h1 a { color: #db4747; }
+    h1 a:hover { color: #ffffff; }
+</style>
+<body style="background: #151515;">
+
+<code>
+<a style="font-size:24px; color: #db4747;" href="index.html"><- Homepage</a>
+<pre>
+Fonksiyon Kullanım Şekli:
+    C++: d3d9->CreateDevice(...);
+    C  : d3d9->lpVtbl->CreateDevice(d3d9, ...);
+</pre>
+
+    <h1 class="head">Requirements</h1>
+    <ul>
+        <li>d3d9.lib - d3d9.h</li>
+    </ul>
+
+    <hr>
+
+    <h1 class="head" if="doc-functions">Functions</h1>
+    <ul>
+        <li><pre>Direct3DCreate9
+    in: UINT SDKVersion (should be D3D_SDK_VERSION)
+    out: IDirect3D9*
+        </pre></li>
+    </ul>
+
+    <h1 class="head" id="doc-interfaces">Interfaces</h1>
+    <ul>
+        <li><a href="#doc-idirect3d9">IDirect3D9</a></li>
+        <li><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a></li>
+        <li><a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a></li>
+        <li><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a></li>
+        <li><a href="#doc-idirect3dindexbuffer9">IDirect3DIndexBuffer9</a></li>
+        <li><a href="#doc-idirect3dpixelshader9">IDirect3DPixelShader9</a></li>
+        <li><a href="#doc-idirect3dquery9">IDirect3DQuery9</a></li>
+        <li><a href="#doc-idirect3dresource9">IDirect3DResource9</a></li>
+        <li><a href="#doc-idirect3dstateblock9">IDirect3DStateBlock9</a></li>
+        <li><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a></li>
+        <li><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a></li>
+        <li><a href="#doc-idirect3dtexture9">IDirect3DTexture9</a></li>
+        <li><a href="#doc-idirect3dvertexbuffer9">IDirect3DVertexBuffer9</a></li>
+        <li><a href="#doc-idirect3dvertexdeclaration9">IDirect3DVertexDeclaration9</a></li>
+        <li><a href="#doc-idirect3dvertexshader9">IDirect3DVertexShader9</a></li>
+        <li><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a></li>
+        <li><a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a></li>
+    </ul>
+
+    <h1 class="head" id="doc-structures">Structures</h1>
+    <ul>
+        <li>D3DADAPTER_IDENTIFIER9</li><!--popover olayı yap-->
+        <li>D3DBOX</li>
+        <li>D3DCAPS9</li>
+        <li>D3DCLIPSTATUS9</li>
+        <li>D3DCOLORVALUE</li>
+        <li>D3DDEVICE_CREATION_PARAMETERS</li>
+        <li>D3DDEVINFO_D3D9BANDWIDTHTIMINGS</li>
+        <li>D3DDEVINFO_D3D9CACHEUTILIZATION</li>
+        <li>D3DDEVINFO_D3D9INTERFACETIMINGS</li>
+        <li>D3DDEVINFO_D3D9PIPELINETIMINGS</li>
+        <li>D3DDEVINFO_D3D9STAGETIMINGS</li>
+        <li>D3DDEVINFO_D3DVERTEXSTATS</li>
+        <li>D3DDEVINFO_ResourceManager</li>
+        <li>D3DDEVINFO_VCACHE</li>
+        <li>D3DDISPLAYMODE</li>
+        <li>D3DGAMMARAMP</li>
+        <li>D3DINDEXBUFFER_DESC</li>
+        <li>D3DLIGHT9</li>
+        <li>D3DLOCKED_BOX</li>
+        <li>D3DLOCKED_RECT</li>
+        <li>D3DMATERIAL9</li>
+        <li>D3DMATRIX</li>
+        <li>D3DMEMORYPRESSURE</li>
+        <li>D3DPRESENT_PARAMETERS</li>
+        <li>D3DPSHADERCAPS2_0</li>
+        <li>D3DRANGE</li>
+        <li>D3DRASTER_STATUS</li>
+        <li>D3DRECT</li>
+        <li>D3DRECTPATCH_INFO </li>
+        <li>D3DRESOURCESTATS 
+        <li>D3DSURFACE_DESC</li> 
+        <li>D3DTRIPATCH_INFO</li> 
+        <li>D3DVECTOR</li> 
+        <li>D3DVERTEXBUFFER_DESC</li> 
+        <li>D3DVERTEXELEMENT9</li> 
+        <li>D3DVIEWPORT9</li> 
+        <li>D3DVOLUME_DESC</li> 
+        <li>D3DVSHADERCAPS2_0</li> 
+        <li>D3DXF_FILELOADMEMORY</li> 
+        <li>PALETTEENTRY</li> 
+        <li>XFILECOMPRESSEDANIMATIONSET</li>
+    </ul>
+
+    <hr>
+
+    <table>
+    <tbody>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3d9"><a href="#doc-interfaces">^</a>IDirect3D9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-checkdepthstencilmatch">CheckDepthStencilMatch</a></td>
+            <td><a href="#doc-checkdeviceformat">CheckDeviceFormat</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-checkdeviceformatconversion">CheckDeviceFormatConversion</a></td>
+            <td><a href="#doc-checkdevicemultisampletype">CheckDeviceMultiSampleType</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-checkdevicetype">CheckDeviceType</a></td>
+            <td><a href="#doc-createdevice">CreateDevice</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-enumadaptermodes">EnumAdapterModes</a></td>
+            <td><a href="#doc-getadaptercount">GetAdapterCount</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-getadapterdisplaymode">GetAdapterDisplayMode</a></td>
+            <td><a href="#doc-getadapteridentifier">GetAdapterIdentifier</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-getadaptermodecount">GetAdapterModeCount</a></td>
+            <td><a href="#doc-getadaptermonitor">GetAdapterMonitor</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-getdevicecaps">GetDeviceCaps</a></td>
+            <td><a href="#doc-registersoftwaredevice">RegisterSoftwareDevice</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dbasetexture9"><a href="#doc-interfaces">^</a>IDirect3DBaseTexture9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GenerateMipSubLevels">GenerateMipSubLevels</a></td>
+            <td><a href="#doc-GetAutoGenFilterType">GetAutoGenFilterType</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetLevelCount">GetLevelCount</a></td>
+            <td><a href="#doc-GetLOD">GetLOD</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetAutoGenFilterType">SetAutoGenFilterType</a></td>
+            <td><a href="#doc-SetLOD">SetLOD</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dcubetexture9"><a href="#doc-interfaces">^</a>IDirect3DCubeTexture9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-AddDirtyRect">AddDirtyRect</a></td>
+            <td><a href="#doc-GetCubeMapSurface">GetCubeMapSurface</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetLevelDesc">GetLevelDesc</a></td>
+            <td><a href="#doc-LockRect1">LockRect</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-UnlockRect1">UnlockRect</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3ddevice9"><a href="#doc-interfaces">^</a>IDirect3DDevice9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-BeginScene">BeginScene</a></td>
+            <td><a href="#doc-BeginStateBlock">BeginStateBlock</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-Clear">Clear</a></td>
+            <td><a href="#doc-ColorFill">ColorFill</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-CreateAdditionalSwapChain">CreateAdditionalSwapChain</a></td>
+            <td><a href="#doc-CreateCubeTexture">CreateCubeTexture</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-CreateDepthStencilSurface">CreateDepthStencilSurface</a></td>
+            <td><a href="#doc-CreateIndexBuffer">CreateIndexBuffer</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-CreateOffscreenPlainSurface">CreateOffscreenPlainSurface</a></td>
+            <td><a href="#doc-CreatePixelShader">CreatePixelShader</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-CreateQuery">CreateQuery</a></td>
+            <td><a href="#doc-CreateRenderTarget">CreateRenderTarget</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-CreateStateBlock">CreateStateBlock</a></td>
+            <td><a href="#doc-CreateTexture">CreateTexture</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-CreateVertexBuffer">CreateVertexBuffer</a></td>
+            <td><a href="#doc-CreateVertexDeclaration">CreateVertexDeclaration</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-CreateVertexShader">CreateVertexShader</a></td>
+            <td><a href="#doc-CreateVolumeTexture">CreateVolumeTexture</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-DeletePatch">DeletePatch</a></td>
+            <td><a href="#doc-DrawIndexedPrimitive">DrawIndexedPrimitive</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-DrawIndexedPrimitiveUP">DrawIndexedPrimitiveUP</a></td>
+            <td><a href="#doc-DrawPrimitive">DrawPrimitive</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-DrawPrimitiveUP">DrawPrimitiveUP</a></td>
+            <td><a href="#doc-DrawRectPatch">DrawRectPatch</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-DrawTriPatch">DrawTriPatch</a></td>
+            <td><a href="#doc-EndScene">EndScene</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-EndStateBlock">EndStateBlock</a></td>
+            <td><a href="#doc-EvictManagedResources">EvictManagedResources</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetAvailableTextureMem">GetAvailableTextureMem</a></td>
+            <td><a href="#doc-GetBackBuffer">GetBackBuffer</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetClipPlane">GetClipPlane</a></td>
+            <td><a href="#doc-GetClipStatus">GetClipStatus</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetCreationParameters">GetCreationParameters</a></td>
+            <td><a href="#doc-GetCurrentTexturePalette">GetCurrentTexturePalette</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDepthStencilSurface">GetDepthStencilSurface</a></td>
+            <td><a href="#doc-GetDeviceCaps">GetDeviceCaps</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDirect3D">GetDirect3D</a></td>
+            <td><a href="#doc-GetDisplayMode">GetDisplayMode</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetFrontBufferData">GetFrontBufferData</a></td>
+            <td><a href="#doc-GetFVF">GetFVF</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetGammaRamp">GetGammaRamp</a></td>
+            <td><a href="#doc-GetIndices">GetIndices</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetLight">GetLight</a></td>
+            <td><a href="#doc-GetLightEnable">GetLightEnable</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetMaterial">GetMaterial</a></td>
+            <td><a href="#doc-GetNPatchMode">GetNPatchMode</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetNumberOfSwapChains">GetNumberOfSwapChains</a></td>
+            <td><a href="#doc-GetPaletteEntries">GetPaletteEntries</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetPixelShader">GetPixelShader</a></td>
+            <td><a href="#doc-GetPixelShaderConstantB">GetPixelShaderConstantB</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetPixelShaderConstantF">GetPixelShaderConstantF</a></td>
+            <td><a href="#doc-GetPixelShaderConstantI">GetPixelShaderConstantI</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetRasterStatus">GetRasterStatus</a></td>
+            <td><a href="#doc-GetRenderState">GetRenderState</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetRenderTarget">GetRenderTarget</a></td>
+            <td><a href="#doc-GetRenderTargetData">GetRenderTargetData</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetSamplerState">GetSamplerState</a></td>
+            <td><a href="#doc-GetScissorRect">GetScissorRect</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetSoftwareVertexProcessing">GetSoftwareVertexProcessing</a></td>
+            <td><a href="#doc-GetStreamSource">GetStreamSource</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetStreamSourceFreq">GetStreamSourceFreq</a></td>
+            <td><a href="#doc-GetSwapChain">GetSwapChain</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetTexture">GetTexture</a></td>
+            <td><a href="#doc-GetTextureStageState">GetTextureStageState</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetTransform">GetTransform</a></td>
+            <td><a href="#doc-GetVertexDeclaration">GetVertexDeclaration</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetVertexShader">GetVertexShader</a></td>
+            <td><a href="#doc-GetVertexShaderConstantB">GetVertexShaderConstantB</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetVertexShaderConstantF">GetVertexShaderConstantF</a></td>
+            <td><a href="#doc-GetVertexShaderConstantI">GetVertexShaderConstantI</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetViewport">GetViewport</a></td>
+            <td><a href="#doc-LightEnable">LightEnable</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-MultiplyTransform">MultiplyTransform</a></td>
+            <td><a href="#doc-Present">Present</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-ProcessVertices">ProcessVertices</a></td>
+            <td><a href="#doc-Reset">Reset</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetClipPlane">SetClipPlane</a></td>
+            <td><a href="#doc-SetClipStatus">SetClipStatus</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetCurrentTexturePalette">SetCurrentTexturePalette</a></td>
+            <td><a href="#doc-SetCursorPosition">SetCursorPosition</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetCursorProperties">SetCursorProperties</a></td>
+            <td><a href="#doc-SetDepthStencilSurface">SetDepthStencilSurface</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetDialogBoxMode">SetDialogBoxMode</a></td>
+            <td><a href="#doc-SetFVF">SetFVF</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetGammaRamp">SetGammaRamp</a></td>
+            <td><a href="#doc-SetIndices">SetIndices</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetLight">SetLight</a></td>
+            <td><a href="#doc-SetMaterial">SetMaterial</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetNPatchMode">SetNPatchMode</a></td>
+            <td><a href="#doc-SetPaletteEntries">SetPaletteEntries</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetPixelShader">SetPixelShader</a></td>
+            <td><a href="#doc-SetPixelShaderConstantB">SetPixelShaderConstantB</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetPixelShaderConstantF">SetPixelShaderConstantF</a></td>
+            <td><a href="#doc-SetPixelShaderConstantI">SetPixelShaderConstantI</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetRenderState">SetRenderState</a></td>
+            <td><a href="#doc-SetRenderTarget">SetRenderTarget</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetSamplerState">SetSamplerState</a></td>
+            <td><a href="#doc-SetScissorRect">SetScissorRect</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetSoftwareVertexProcessing">SetSoftwareVertexProcessing</a></td>
+            <td><a href="#doc-SetStreamSource">SetStreamSource</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetStreamSourceFreq">SetStreamSourceFreq</a></td>
+            <td><a href="#doc-SetTexture">SetTexture</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetTextureStageState">SetTextureStageState</a></td>
+            <td><a href="#doc-SetTransform">SetTransform</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetVertexDeclaration">SetVertexDeclaration</a></td>
+            <td><a href="#doc-SetVertexShader">SetVertexShader</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetVertexShaderConstantB">SetVertexShaderConstantB</a></td>
+            <td><a href="#doc-SetVertexShaderConstantF">SetVertexShaderConstantF</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetVertexShaderConstantI">SetVertexShaderConstantI</a></td>
+            <td><a href="#doc-SetViewport">SetViewport</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-ShowCursor">ShowCursor</a></td>
+            <td><a href="#doc-StretchRect">StretchRect</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-TestCooperativeLevel">TestCooperativeLevel</a></td>
+            <td><a href="#doc-UpdateSurface">UpdateSurface</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-UpdateTexture">UpdateTexture</a></td>
+            <td><a href="#doc-ValidateDevice">ValidateDevice</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dindexbuffer9"><a href="#doc-interfaces">^</a>IDirect3DIndexBuffer9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDesc1">GetDesc</a></td>
+            <td><a href="#doc-Lock1">Lock</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-Unlock1">Unlock</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dpixelshader9"><a href="#doc-interfaces">^</a>IDirect3DPixelShader9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDevice1">GetDevice</a></td>
+            <td><a href="#doc-GetFunction1">GetFunction</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dquery9"><a href="#doc-interfaces">^</a>IDirect3DQuery9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetData">GetData</a></td>
+            <td><a href="#doc-GetDataSize">GetDataSize</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDevice2">GetDevice</a></td>
+            <td><a href="#doc-GetType1">GetType</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-Issue">Issue</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dresource9"><a href="#doc-interfaces">^</a>IDirect3DResource9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-FreePrivateData">FreePrivateData</a></td>
+            <td><a href="#doc-GetDevice3">GetDevice</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetPriority">GetPriority</a></td>
+            <td><a href="#doc-GetPrivateData">GetPrivateData</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetType2">GetType</a></td>
+            <td><a href="#doc-PreLoad">PreLoad</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetPriority">SetPriority</a></td>
+            <td><a href="#doc-SetPrivateData">SetPrivateData</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dstateblock9"><a href="#doc-interfaces">^</a>IDirect3DStateBlock9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-Apply">Apply</a></td>
+            <td><a href="#doc-Capture">Capture</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDevice4">GetDevice</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dsurface9"><a href="#doc-interfaces">^</a>IDirect3DSurface9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetContainer">GetContainer</a></td>
+            <td><a href="#doc-GetDC">GetDC</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDesc2">GetDesc</a></td>
+            <td><a href="#doc-LockRect2">LockRect</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-ReleaseDC">ReleaseDC</a></td>
+            <td><a href="#doc-UnlockRect2">UnlockRect</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dswapchain9"><a href="#doc-interfaces">^</a>IDirect3DSwapChain9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetBackBuffersw">GetBackBuffer</a></td>
+            <td><a href="#doc-GetDevicesw">GetDevice</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDisplayModesw">GetDisplayMode</a></td>
+            <td><a href="#doc-GetFrontBufferDatasw">GetFrontBufferData</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetPresentParameterssw">GetPresentParameters</a></td>
+            <td><a href="#doc-GetRasterStatussw">GetRasterStatus</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-Presentsw">Present</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dtexture9"><a href="#doc-interfaces">^</a>IDirect3DTexture9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-AddDirtyRecttx">AddDirtyRect</a></td>
+            <td><a href="#doc-GetLevelDesctx">GetLevelDesc</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetSurfaceLeveltx">GetSurfaceLevel</a></td>
+            <td><a href="#doc-LockRecttx">LockRect</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-UnlockRecttx">UnlockRect</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dvertexbuffer9"><a href="#doc-interfaces">^</a>IDirect3DVertexBuffer9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDescvb">GetDesc</a></td>
+            <td><a href="#doc-Lockvb">Lock</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-Unlockvb">Unlock</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dvertexdeclaration9"><a href="#doc-interfaces">^</a>IDirect3DVertexDeclaration9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDeclarationvd">GetDeclaration</a></td>
+            <td><a href="#doc-GetDevicevd">GetDevice</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dvertexshader9"><a href="#doc-interfaces">^</a>IDirect3DVertexShader9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDevicevs">GetDevice</a></td>
+            <td><a href="#doc-GetFunctionvs">GetFunction</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dvolume9"><a href="#doc-interfaces">^</a>IDirect3DVolume9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-FreePrivateDatav">FreePrivateData</a></td>
+            <td><a href="#doc-GetContainerv">GetContainer</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetDescv">GetDesc</a></td>
+            <td><a href="#doc-GetDevicev">GetDevice</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetPrivateDatav">GetPrivateData</a></td>
+            <td><a href="#doc-LockBoxv">LockBox</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-SetPrivateDatav">SetPrivateData</a></td>
+            <td><a href="#doc-UnlockBoxv">UnlockBox</a></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="head" id="doc-idirect3dvolumetexture9"><a href="#doc-interfaces">^</a>IDirect3DVolumeTexture9::</td>
+        </tr>
+        <tr>
+            <td><a href="#doc-AddDirtyBoxvt">AddDirtyBox</a></td>
+            <td><a href="#doc-GetLevelDescvt">GetLevelDesc</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-GetVolumeLevelvt">GetVolumeLevel</a></td>
+            <td><a href="#doc-LockBoxvt">LockBox</a></td>
+        </tr>
+        <tr>
+            <td><a href="#doc-UnlockBoxvt">UnlockBox</a></td>
+        </tr>
+    </tbody>
+    </table>
+
+<hr>
+
+<h1 id="doc-checkdepthstencilmatch"><a href="#doc-idirect3d9">IDirect3D9</a>::CheckDepthStencilMatch</h1>
+<pre>
+Seçilen bir derinlik tamponu (depth-stencil) formatının, hedef yüzey (render target) formatı ile donanım üzerinde aynı anda çalışıp çalışamayacağını kontrol eder.
+</pre>
+<h1 id="doc-checkdeviceformat"><a href="#doc-idirect3d9">IDirect3D9</a>::CheckDeviceFormat</h1>
+<pre>
+Belirli bir veri formatının (texture, surface vb.), belirli bir kullanım amacı (usage) ve kaynak tipi için donanım tarafından desteklenip desteklenmediğini sorgular.
+</pre>
+<h1 id="doc-checkdeviceformatconversion"><a href="#doc-idirect3d9">IDirect3D9</a>::CheckDeviceFormatConversion</h1>
+<pre>
+Bir ekran formatı (display format) ile arka tampon (back buffer) formatı arasında renk dönüşümü (conversion) yapılıp yapılamayacağını doğrular.
+</pre>
+<h1 id="doc-checkdevicemultisampletype"><a href="#doc-idirect3d9">IDirect3D9</a>::CheckDeviceMultiSampleType</h1>
+<pre>
+Donanımın belirli bir yüzey formatında kenar yumuşatma (anti-aliasing) desteğini ve desteklediği kalite seviyelerini sorgular.
+</pre>
+<h1 id="doc-checkdevicetype"><a href="#doc-idirect3d9">IDirect3D9</a>::CheckDeviceType</h1>
+<pre>
+Belirli bir adaptörde donanım hızlandırmalı (HAL) render modunun kullanılıp kullanılamayacağını test eder.
+</pre>
+<h1 id="doc-createdevice"><a href="#doc-idirect3d9">IDirect3D9</a>::CreateDevice</h1>
+<pre>
+Grafik işlemlerini yönetecek olan ana cihaz arayüzünü (device) oluşturur; render döngüsünü ve bellek yönetimini başlatır.
+</pre>
+<h1 id="doc-enumadaptermodes"><a href="#doc-idirect3d9">IDirect3D9</a>::EnumAdapterModes</h1>
+<pre>
+Ekran kartının desteklediği tüm geçerli çözünürlük, format ve tazeleme hızı kombinasyonlarını liste halinde sunar.
+</pre>
+<h1 id="doc-getadaptercount"><a href="#doc-idirect3d9">IDirect3D9</a>::GetAdapterCount</h1>
+<pre>
+Bilgisayarda takılı olan fiziksel ekran kartı (adaptör) sayısını döndürür.
+</pre>
+<h1 id="doc-getadapterdisplaymode"><a href="#doc-idirect3d9">IDirect3D9</a>::GetAdapterDisplayMode</h1>
+<pre>
+Masaüstünde o an aktif olarak kullanılan güncel çözünürlük ve format bilgilerini getirir.
+</pre>
+<h1 id="doc-getadapterdisplaymode"><a href="#doc-idirect3d9">IDirect3D9</a>::GetAdapterIdentifier</h1>
+<pre>
+Ekran kartının ismini, sürücü sürümünü ve donanım kimlik bilgilerini (GUID) sağlar.
+</pre>
+<h1 id="doc-getadaptermodecount"><a href="#doc-idirect3d9">IDirect3D9</a>::GetAdapterModeCount</h1>
+<pre>
+Belirli bir format için ekran kartının desteklediği toplam görüntü modu (çözünürlük seçeneği) sayısını verir.
+</pre>
+<h1 id="doc-getadaptermonitor"><a href="#doc-idirect3d9">IDirect3D9</a>::GetAdapterMonitor</h1>
+<pre>
+Ekran kartının görüntü aktardığı fiziksel monitörün sistem tutamacını (HMONITOR) döndürür.
+</pre>
+<h1 id="doc-getdevicecaps"><a href="#doc-idirect3d9">IDirect3D9</a>::GetDeviceCaps</h1>
+<pre>
+Donanımın teknik sınırlarını (maksimum doku çözünürlüğü, desteklenen shader sürümleri, işleme yetenekleri) sorgular.
+</pre>
+<h1 id="doc-registersoftwaredevice"><a href="#doc-idirect3d9">IDirect3D9</a>::RegisterSoftwareDevice</h1>
+<pre>
+Özel olarak yazılmış harici bir yazılımsal render motorunu (rasterizer) Direct3D sistemine dahil etmek için kullanılır.
+</pre>
+
+
+<h1 id="doc-GenerateMipSubLevels"><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a>::GenerateMipSubLevels</h1>
+<pre>
+Eğer doku "otomatik mipmap üretimi" (D3DUSAGE_AUTOGENMIPMAP) ile oluşturulmuşsa, en üst seviyedeki doku verisini baz alarak tüm alt mipmap seviyelerini (daha küçük boyutlu kopyaları) o anda yeniden hesaplar ve oluşturur.
+</pre>
+<h1 id="doc-GetAutoGenFilterType"><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a>::GetAutoGenFilterType</h1>
+<pre>
+Otomatik mipmap üretimi sırasında kullanılan filtreleme tipini (Point, Linear vb.) sorgular.
+</pre>
+<h1 id="doc-GetLevelCount"><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a>::GetLevelCount</h1>
+<pre>
+Dokunun sahip olduğu toplam mipmap seviyesi sayısını (ana doku dahil kaç adet alt seviye olduğunu) döndürür.
+</pre>
+<h1 id="doc-GetLOD"><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a>::GetLOD</h1>
+<pre>
+Dokunun mevcut "Level of Detail" (Detay Seviyesi) değerini getirir. Bu değer, doku yönetimi sırasında hangi mipmap seviyesinin en detaylı seviye olarak kabul edildiğini gösterir.
+</pre>
+<h1 id="doc-SetAutoGenFilterType"><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a>::SetAutoGenFilterType</h1>
+<pre>
+Otomatik mipmap oluşturma işlemi yapılırken (örneğin Linear veya Point gibi) hangi matematiksel filtreleme yönteminin kullanılacağını belirler.
+</pre>
+<h1 id="doc-SetLOD"><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a>::SetLOD</h1>
+<pre>
+Dokunun detay seviyesini (LOD) sınırlar. Örneğin, ekran kartı belleğinden tasarruf etmek için en yüksek çözünürlüklü seviyenin kullanılmamasını veya belirli bir seviyeden sonrasının yüklenmesini bu fonksiyonla yönetirsin.
+</pre>
+
+
+<h1 id="doc-AddDirtyRect"><a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a>::AddDirtyRect</h1>
+<pre>
+Küp dokusunun belirli bir yüzündeki (face) belirli bir dikdörtgen alanı "kirli" (dirty) olarak işaretler. Bu, ekran kartına sadece o bölgenin değiştiğini bildirerek, bir sonraki çizim işleminde tüm doku yerine sadece ilgili kısmın güncellenmesini sağlar.
+</pre>
+<h1 id="doc-GetCubeMapSurface"><a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a>::GetCubeMapSurface</h1>
+<pre>
+Küp dokusunun belirtilen bir yüzünü (6 yüzden biri) ve belirtilen mipmap seviyesini bir "yüzey" (IDirect3DSurface9) nesnesi olarak döndürür. Bu yüzey üzerinde doğrudan işlem yapılmasına olanak tanır.
+</pre>
+<h1 id="doc-GetLevelDesc"><a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a>::GetLevelDesc</h1>
+<pre>
+Küp dokusunun belirli bir mipmap seviyesine ait teknik tanımlamaları (genişlik, yükseklik, format vb.) bir yapı (D3DSURFACE_DESC) içerisine doldurur.
+</pre>
+<h1 id="doc-LockRect1"><a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a>::LockRect</h1>
+<pre>
+Küp dokusunun belirli bir yüzündeki belirli bir alanı, merkezi işlem biriminin (CPU) erişebilmesi için kilitler. Bu işlem sonucunda, doku piksellerine doğrudan ham veri seviyesinde müdahale edebileceğin bir bellek adresi (pointer) elde edersin.
+</pre>
+<h1 id="doc-UnlockRect1"><a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a>::UnlockRect</h1>
+<pre>
+LockRect ile kilitlenen yüzeyi serbest bırakır. CPU tarafında yapılan piksel değişikliklerinin GPU belleğine aktarılması ve dokunun tekrar çizim işlemlerinde kullanılabilmesi için bu adım zorunludur.
+</pre>
+
+
+<h1 id="doc-BeginScene"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::BeginScene</h1>
+<pre>
+Grafik kartına çizim komutlarının gönderilmeye başlanacağını bildirir. Her render döngüsü bu fonksiyonla başlamalı ve EndScene ile bitirilmelidir. GPU ve CPU senkronizasyonu için kritiktir.
+</pre>
+<h1 id="doc-BeginStateBlock"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::BeginStateBlock</h1>
+<pre>
+Cihazın o anki durum ayarlarındaki (render states, texture states vb.) değişiklikleri kaydetmeye başlar. Kaydedilen bu ayarlar daha sonra tek bir komutla topluca tekrar uygulanabilir.
+</pre>
+<h1 id="doc-Clear"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::Clear</h1>
+<pre>
+Belirtilen yüzeyleri (arka tampon, derinlik tamponu veya stencil tamponu) belirli bir renk veya değere sıfırlar. Genellikle her yeni kare çizilmeden önce ekranı temizlemek için kullanılır.
+</pre>
+<h1 id="doc-ColorFill"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::ColorFill</h1>
+<pre>
+Bir yüzeyi (surface) doğrudan düz bir renk ile doldurur. Genellikle doku olmayan, bağımsız yüzeyler (off-screen surfaces) üzerinde hızlı renk dolgusu yapmak için tercih edilir.
+</pre>
+<h1 id="doc-CreateAdditionalSwapChain"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateAdditionalSwapChain</h1>
+<pre>
+Uygulamanın ana penceresi dışında, ek pencerelere de görüntü aktarabilmesini sağlayan ikincil bir görüntü zinciri (swap chain) oluşturur. Çoklu monitör veya çoklu pencere desteği için kullanılır.
+</pre>
+<h1 id="doc-CreateCubeTexture"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateCubeTexture</h1>
+<pre>
+Altı adet kareden oluşan ve bir küpü çevreleyen özel bir doku yapısı (küp doku) oluşturur. Skybox (gökyüzü kutusu) veya yansıma haritaları (environment mapping) için temel kaynaktır.
+</pre>
+<h1 id="doc-CreateDepthStencilSurface"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateDepthStencilSurface</h1>
+<pre>
+Sadece derinlik ve maskeleme (depth-stencil) verilerini tutmak için kullanılan, doğrudan çizim yapılamayan ancak render işlemlerinde yardımcı olan bir yüzey kaynağı oluşturur.
+</pre>
+<h1 id="doc-CreateIndexBuffer"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateIndexBuffer</h1>
+<pre>
+Köşelerin (vertex) hangi sırayla birleştirilip üçgenler oluşturacağını belirleyen indeks verilerini saklamak için ekran kartı belleğinde bir tampon ayırır. Bellek tasarrufu ve performans için hayati önem taşır.
+</pre>
+<h1 id="doc-CreateOffscreenPlainSurface"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateOffscreenPlainSurface</h1>
+<pre>
+Ekranda doğrudan görüntülenmeyen, sadece veri saklamak, kopyalamak veya özel görüntü işleme adımları (post-processing) için kullanılan düz bir yüzey (surface) oluşturur.
+</pre>
+<h1 id="doc-CreatePixelShader"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreatePixelShader</h1>
+<pre>
+Piksellerin ekrana nasıl basılacağını (renk, ışık, gölge hesaplamaları) belirleyen derlenmiş piksel shader kodunu donanıma tanıtır ve bir shader nesnesi oluşturur.
+</pre>
+<h1 id="doc-CreateQuery"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateQuery</h1>
+<pre>
+Grafik işlemcisi (GPU) üzerinde belirli istatistikleri (örneğin kaç pikselin ekrana çizildiği veya GPU'nun ne kadar sürede işlem yaptığı) takip etmek için asenkron bir sorgu nesnesi oluşturur.
+</pre>
+<h1 id="doc-CreateRenderTarget"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateRenderTarget</h1>
+<pre>
+Üzerine doğrudan çizim yapılabilecek, standart dışı bir yüzey oluşturur. Genellikle bir görüntüyü ekrana basmak yerine bir dokuya çizmek (render-to-texture) için kullanılır.
+</pre>
+<h1 id="doc-CreateStateBlock"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateStateBlock</h1>
+<pre>
+Cihazın o anki tüm ayarlarını (render states, sampler states vb.) tek bir paket olarak kaydeden bir nesne oluşturur. Bu paket daha sonra tek komutla tüm ayarları geri yüklemek için kullanılır.
+</pre>
+<h1 id="doc-CreateTexture"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateTexture</h1>
+<pre>
+2D görüntü verilerini saklamak için standart bir doku nesnesi oluşturur. Bu dokular, 3D modellerin yüzeylerini kaplamak için kullanılır.
+</pre>
+<h1 id="doc-CreateVertexBuffer"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateVertexBuffer</h1>
+<pre>
+Köşelerin (vertex) koordinat, renk ve doku bilgisi gibi ham verilerini GPU belleğinde saklamak için bir tampon ayırır.
+</pre>
+<h1 id="doc-CreateVertexDeclaration"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateVertexDeclaration</h1>
+<pre>
+Vertex buffer içindeki ham bayt verilerinin GPU tarafından nasıl yorumlanacağını (hangisi koordinat, hangisi renk vb.) tarif eden bir şablon oluşturur.
+</pre>
+<h1 id="doc-CreateVertexShader"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateVertexShader</h1>
+<pre>
+Köşelerin dünya koordinatlarındaki konumlarını hesaplayan ve dönüştüren (transform/lighting) programlanabilir köşe shader nesnesini oluşturur.
+</pre>
+<h1 id="doc-CreateVolumeTexture"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::CreateVolumeTexture</h1>
+<pre>
+2D yerine 3D (hacimsel) veri saklayan, derinlik bilgisine de sahip olan özel bir doku yapısı oluşturur.
+</pre>
+<h1 id="doc-DeletePatch"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::DeletePatch</h1>
+<pre>
+Yüksek mertebeli yüzeyler (High-Order Surfaces) için kullanılan yama (patch) verilerini bellekten temizler.
+</pre>
+<h1 id="doc-DrawIndexedPrimitive"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::DrawIndexedPrimitive</h1>
+<pre>
+Bir indeks tamponu (index buffer) kullanarak, vertex buffer üzerindeki verilerden geometrik şekiller (üçgen, çizgi, nokta) çizer. Bellek tasarrufu ve performans için en çok kullanılan çizim fonksiyonudur.
+</pre>
+<h1 id="doc-DrawIndexedPrimitiveUP"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::DrawIndexedPrimitiveUP</h1>
+<pre>
+Ekran kartı belleğinde (VertexBuffer) saklanmayan, doğrudan sistem belleğindeki (RAM) bir adresten okunan indeksli köşe verilerini kullanarak çizim yapar. "UP" (User Pointer) ifadesi verinin kullanıcı tarafından sağlanan bir bellek adresinden geldiğini belirtir.
+</pre>
+<h1 id="doc-DrawPrimitive"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::DrawPrimitive</h1>
+<pre>
+İndeks tamponu kullanmadan, halihazırda bağlı olan vertex buffer üzerindeki köşeleri sırasıyla okuyarak geometrik şekiller (üçgen, çizgi vb.) çizer.
+</pre>
+<h1 id="doc-DrawPrimitiveUP"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::DrawPrimitiveUP</h1>
+<pre>
+Vertex buffer kullanmadan, doğrudan sistem belleğindeki bir adresten okunan ham köşe verileriyle (non-indexed) çizim yapar. Küçük ve dinamik veri kümeleri için kullanılır.
+</pre>
+<h1 id="doc-DrawRectPatch"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::DrawRectPatch</h1>
+<pre>
+Mevcut segment ayarlarını ve bayraklarını kullanarak dikdörtgen şeklinde yüksek mertebeli bir yüzey (patch) çizer.
+</pre>
+<h1 id="doc-DrawTriPatch"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::DrawTriPatch</h1>
+<pre>
+Mevcut segment ayarlarını ve bayraklarını kullanarak üçgen şeklinde yüksek mertebeli bir yüzey (patch) çizer.
+</pre>
+<h1 id="doc-EndScene"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::EndScene</h1>
+<pre>
+BeginScene ile başlatılan çizim komutları dizisinin sona erdiğini bildirir. Bu aşamada sürücü dahili komut kuyruğunu boşaltır ve veriyi işlenmek üzere GPU'ya tam olarak gönderir.
+</pre>
+<h1 id="doc-EndStateBlock"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::EndStateBlock</h1>
+<pre>
+BeginStateBlock ile başlatılan durum (state) kaydetme işlemini durdurur ve kaydedilen tüm ayarları içeren bir IDirect3DStateBlock9 arayüzü döndürür.
+</pre>
+<h1 id="doc-EvictManagedResources"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::EvictManagedResources</h1>
+<pre>
+"Managed" (yönetilen) havuzdaki (D3DPOOL_MANAGED) tüm kaynakları (doku, tampon vb.) video belleğinden (VRAM) sistem belleğine (RAM) tahliye eder. Bellekte yer açmak için kullanılır.
+</pre>
+<h1 id="doc-GetAvailableTextureMem"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetAvailableTextureMem</h1>
+<pre>
+Kullanılabilir doku belleği miktarının (VRAM) tahmini değerini bayt cinsinden döndürür.
+</pre>
+<h1 id="doc-GetBackBuffer"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetBackBuffer</h1>
+<pre>
+Cihazın görüntü zinciri (swap chain) içerisinden belirli bir arka tamponun (back buffer) yüzey adresini (IDirect3DSurface9) getirir.
+</pre>
+<h1 id="doc-GetClipPlane"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetClipPlane</h1>
+<pre>
+Sahne çizilirken belirli bir düzlemin dışındaki pikselleri kırpmak (clipping) için tanımlanmış olan kullanıcı düzleminin katsayılarını (A, B, C, D) getirir.
+</pre>
+<h1 id="doc-GetClipStatus"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetClipStatus</h1>
+<pre>
+Cihazın o anki kırpma durumunu, yani geometrinin kırpma sınırları içinde olup olmadığını belirten bayrakları (flags) döndürür.
+</pre>
+<h1 id="doc-GetCreationParameters"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetCreationParameters</h1>
+<pre>
+Cihaz oluşturulurken (CreateDevice aşamasında) kullanılan adaptör numarası, cihaz tipi ve pencere tutamacı (HWND) gibi temel parametreleri bir yapı içinde sunar.
+</pre>
+<h1 id="doc-GetCurrentTexturePalette"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetCurrentTexturePalette</h1>
+<pre>
+Paletli dokular (indexed textures) kullanılıyorsa, o anda ekran kartı tarafından kullanılan aktif doku paletinin indeksini verir.
+</pre>
+<h1 id="doc-GetDepthStencilSurface"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetDepthStencilSurface</h1>
+<pre>
+Cihazın o anda aktif olarak kullandığı derinlik ve maskeleme (depth-stencil) yüzeyinin bellek adresini döndürür.
+</pre>
+<h1 id="doc-GetDeviceCaps"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetDeviceCaps</h1>
+<pre>
+Mevcut render cihazının donanımsal limitlerini ve yeteneklerini (Caps) sorgular. Cihaz oluşturulduktan sonra hangi özelliklerin aktif olduğunu teyit etmek için kullanılır.
+</pre>
+<h1 id="doc-GetDirect3D"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetDirect3D</h1>
+<pre>
+Bu cihaz nesnesini (IDirect3DDevice9) en başta oluşturan ana Direct3D arayüzüne (IDirect3D9) geri dönen bir işaretçi sağlar.
+</pre>
+<h1 id="doc-GetDisplayMode"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetDisplayMode</h1>
+<pre>
+Görüntü zincirinin (swap chain) o andaki çözünürlük, renk formatı ve yenileme hızı bilgilerini getirir.
+</pre>
+<h1 id="doc-GetFrontBufferData"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetFrontBufferData</h1>
+<pre>
+Ekran kartının o anda monitöre gönderdiği ön tamponun (front buffer) bir kopyasını oluşturur ve sistem belleğine (RAM) aktarır. Genellikle ekran görüntüsü (screenshot) almak için kullanılır.
+</pre>
+<h1 id="doc-GetFVF"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetFVF</h1>
+<pre>
+Cihaz üzerinde o anda tanımlı olan Sabit Fonksiyonlu İşlem Hattı (Fixed Function Pipeline) köşe formatını (Flexible Vertex Format) döndürür.
+</pre>
+<h1 id="doc-GetGammaRamp"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetGammaRamp</h1>
+<pre>
+Ekran kartının görüntü zinciri (swap chain) için tanımlanmış olan güncel gama düzeltme (gamma correction) tablosunu getirir. Ekran parlaklığı ve renk kalibrasyonu verilerini okumak için kullanılır.
+</pre>
+<h1 id="doc-GetIndices"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetIndices</h1>
+<pre>
+O anda cihaz üzerinde çizim işlemleri için aktif olarak bağlı olan indeks tamponunun (IDirect3DIndexBuffer9) bellek adresini döndürür.
+</pre>
+<h1 id="doc-GetLight"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetLight</h1>
+<pre>
+Sabit Fonksiyonlu İşlem Hattı (FFP) içerisinde tanımlanmış olan belirli bir ışık kaynağının özelliklerini (renk, pozisyon, menzil vb.) bir yapı (D3DLIGHT9) içerisine doldurur.
+</pre>
+<h1 id="doc-GetLightEnable"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetLightEnable</h1>
+<pre>
+Belirli bir ışık kaynağının o anda aktif (açık) olup olmadığını veya devre dışı (kapalı) bırakılıp bırakılmadığını sorgular.
+</pre>
+<h1 id="doc-GetMaterial"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetMaterial</h1>
+<pre>
+Yüzeylerin ışığa nasıl tepki vereceğini belirleyen (yansıma, emilme, parlaklık) ve o anda aktif olan materyal özelliklerini (D3DMATERIAL9) getirir.
+</pre>
+<h1 id="doc-GetNPatchMode"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetNPatchMode</h1>
+<pre>
+N-patch (normal-based patches) mozaikleme (tessellation) modunun o anki segmentasyon seviyesini veya değerini döndürür.
+</pre>
+<h1 id="doc-GetNumberOfSwapChains"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetNumberOfSwapChains</h1>
+<pre>
+Cihaz tarafından yönetilen ve görüntü aktarımı yapılan toplam görüntü zinciri (swap chain) sayısını verir.
+</pre>
+<h1 id="doc-GetPaletteEntries"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetPaletteEntries</h1>
+<pre>
+Paletli doku formatları kullanılıyorsa, belirtilen bir palet numarasına ait renk girişlerini (RGBA değerlerini) getirir.
+</pre>
+<h1 id="doc-GetPixelShader"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetPixelShader</h1>
+<pre>
+O anda pikselleri işlemek için donanım üzerinde aktif olan piksel shader nesnesinin (IDirect3DPixelShader9) adresini döndürür.
+</pre>
+<h1 id="doc-GetPixelShaderConstantB"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetPixelShaderConstantB</h1>
+<pre>
+Belirli bir piksel shader tarafından kullanılan mantıksal (boolean) sabit değerleri (constant registers) sorgular ve okur.
+</pre>
+<h1 id="doc-GetPixelShaderConstantF"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetPixelShaderConstantF</h1>
+<pre>
+Piksel shader içerisindeki kayan noktalı (floating-point) sabit değerleri (constant registers) sorgular ve okur.
+</pre>
+<h1 id="doc-GetPixelShaderConstantI"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetPixelShaderConstantI</h1>
+<pre>
+Piksel shader içerisinde kullanılan tam sayı (integer) tabanlı sabit değerleri sorgular ve okur.
+</pre>
+<h1 id="doc-GetRasterStatus"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetRasterStatus</h1>
+<pre>
+Monitörün o andaki tarama (raster) durumunu, hangi satırı çizdiğini ve dikey boşluk (VBlank) bilgisini döndürür.
+</pre>
+<h1 id="doc-GetRenderState"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetRenderState</h1>
+<pre>
+Cihazın o anki belirli bir çizim ayarının (Z-Enable, Wireframe, AlphaBlend vb.) güncel değerini getirir.
+</pre>
+<h1 id="doc-GetRenderTarget"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetRenderTarget</h1>
+<pre>
+Cihazın o anda üzerine çizim yaptığı hedef yüzeyin (render target) bellek adresini döndürür.
+</pre>
+<h1 id="doc-GetRenderTargetData"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetRenderTargetData</h1>
+<pre>
+Ekran kartı belleğindeki (VRAM) bir render-target yüzeyini, sistem belleğindeki (RAM) bir yüzeye kopyalar.
+</pre>
+<h1 id="doc-GetSamplerState"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetSamplerState</h1>
+<pre>
+Dokuların nasıl örnekleneceğini (filtreleme ve adresleme modları) belirleyen örnekleyici durum değerlerini sorgular.
+</pre>
+<h1 id="doc-GetScissorRect"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetScissorRect</h1>
+<pre>
+Çizim alanını belirli bir bölgeye hapseden makaslama (scissor) dikdörtgeninin koordinatlarını getirir.
+</pre>
+<h1 id="doc-GetSoftwareVertexProcessing"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetSoftwareVertexProcessing</h1>
+<pre>
+Köşe (vertex) hesaplama işlemlerinin o anda yazılımsal (CPU) mı yoksa donanımsal (GPU) mı yapıldığını döndürür.
+</pre>
+<h1 id="doc-GetStreamSource"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetStreamSource</h1>
+<pre>
+Belirli bir veri akış kanalına bağlı olan köşe tamponunun (vertex buffer) adresini ve akış parametrelerini döndürür.
+</pre>
+<h1 id="doc-GetStreamSourceFreq"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetStreamSourceFreq</h1>
+<pre>
+Veri akış kaynağının frekans değerini (geometri instancing işlemleri için) döndürür.
+</pre>
+<h1 id="doc-GetSwapChain"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetSwapChain</h1>
+<pre>
+Cihaza bağlı olan belirli bir görüntü zincirinin (swap chain) bellek adresini getirir.
+</pre>
+<h1 id="doc-GetTexture"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetTexture</h1>
+<pre>
+Belirli bir doku aşamasına (stage) atanmış olan doku nesnesinin adresini döndürür.
+</pre>
+<h1 id="doc-GetTextureStageState"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetTextureStageState</h1>
+<pre>
+Belirli bir doku aşaması için tanımlanmış olan durum (state) değerlerini sorgular.
+</pre>
+<h1 id="doc-GetTransform"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetTransform</h1>
+<pre>
+Sabit fonksiyonlu işlem hattında kullanılan dönüşüm matrislerini (Dünya, Bakış veya Projeksiyon) getirir.
+</pre>
+<h1 id="doc-GetVertexDeclaration"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetVertexDeclaration</h1>
+<pre>
+Köşe verilerinin GPU belleğinde nasıl dizildiğini tanımlayan köşe bildirim nesnesini döndürür.
+</pre>
+<h1 id="doc-GetVertexShader"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetVertexShader</h1>
+<pre>
+O anda köşeleri işlemek için donanım üzerinde aktif olan köşe shader nesnesinin adresini döndürür.
+</pre>
+<h1 id="doc-GetVertexShaderConstantB"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetVertexShaderConstantB</h1>
+<pre>
+Köşe shader içerisindeki mantıksal (boolean) sabit değerleri sorgular ve okur.
+</pre>
+<h1 id="doc-GetVertexShaderConstantF"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetVertexShaderConstantF</h1>
+<pre>
+Köşe shader içerisindeki kayan noktalı (floating-point) sabit değerleri sorgular ve okur.
+</pre>
+<h1 id="doc-GetVertexShaderConstantI"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetVertexShaderConstantI</h1>
+<pre>
+Köşe shader içerisinde kullanılan tam sayı (integer) tabanlı sabit değerleri sorgular ve okur.
+</pre>
+<h1 id="doc-GetViewport"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::GetViewport</h1>
+<pre>
+Cihazın o anda kullandığı bakış alanı (viewport) parametrelerini (X, Y, Genişlik, Yükseklik, Min/Max Derinlik) getirir.
+</pre>
+<h1 id="doc-LightEnable"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::LightEnable</h1>
+<pre>
+Sabit fonksiyonlu işlem hattında tanımlanmış olan bir ışık kaynağını aktif hale getirir veya devre dışı bırakır.
+</pre>
+<h1 id="doc-MultiplyTransform"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::MultiplyTransform</h1>
+<pre>
+Cihazın mevcut dönüşüm matrisini (Dünya, Bakış veya Projeksiyon) belirtilen yeni bir matris ile çarpar.
+</pre>
+<h1 id="doc-Present"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::Present</h1>
+<pre>
+Arka tamponda (back buffer) hazırlanan görüntüyü ön tampona (front buffer) aktararak ekranda görüntülenmesini sağlar.
+</pre>
+<h1 id="doc-ProcessVertices"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::ProcessVertices</h1>
+<pre>
+Köşe (vertex) verileri üzerinde dönüşüm ve aydınlatma hesaplamalarını yaparak sonuçları bir hedef tampona yazar.
+</pre>
+<h1 id="doc-Reset"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::Reset</h1>
+<pre>
+Cihazın görüntüleme ayarlarını veya swap chain parametrelerini (çözünürlük, pencere modu vb.) yeniden yapılandırır.
+</pre>
+<h1 id="doc-SetClipPlane"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetClipPlane</h1>
+<pre>
+Sahne çizilirken geometrinin kesilmesini sağlayacak olan kullanıcı tanımlı bir kırpma düzleminin katsayılarını atar.
+</pre>
+<h1 id="doc-SetClipStatus"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetClipStatus</h1>
+<pre>
+Cihazın yazılımsal kırpma (clipping) durumunu ve ilgili bayraklarını (flags) doğrudan belirler.
+</pre>
+<h1 id="doc-SetCurrentTexturePalette"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetCurrentTexturePalette</h1>
+<pre>
+Paletli doku formatları için kullanılacak olan aktif doku paletinin indeksini ayarlar.
+</pre>
+<h1 id="doc-SetCursorPosition"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetCursorPosition</h1>
+<pre>
+Donanımsal imlecin (cursor) ekran üzerindeki koordinatlarını ve güncelleme seçeneklerini belirler.
+</pre>
+<h1 id="doc-SetCursorProperties"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetCursorProperties</h1>
+<pre>
+Donanımsal imleç (cursor) için kullanılacak olan bitmap görüntüsünü ve imlecin odak noktasını (hotspot) belirler.
+</pre>
+<h1 id="doc-SetDepthStencilSurface"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetDepthStencilSurface</h1>
+<pre>
+Cihazın o anda kullanacağı derinlik ve maskeleme (depth-stencil) yüzeyini yeni bir yüzeyle değiştirir.
+</pre>
+<h1 id="doc-SetDialogBoxMode"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetDialogBoxMode</h1>
+<pre>
+Tam ekran modunda çalışan uygulamalarda GDI diyalog kutularının (Windows pencereleri) görüntülenebilmesi için özel bir modu aktif eder.
+</pre>
+<h1 id="doc-SetFVF"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetFVF</h1>
+<pre>
+Sabit fonksiyonlu işlem hattında kullanılacak olan köşe formatını (Flexible Vertex Format) sisteme tanımlar.
+</pre>
+<h1 id="doc-SetGammaRamp"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetGammaRamp</h1>
+<pre>
+Görüntü zinciri (swap chain) için yeni bir gama düzeltme tablosu tanımlayarak ekran parlaklığı ve renk dengesini ayarlar.
+</pre>
+<h1 id="doc-SetIndices"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetIndices</h1>
+<pre>
+Çizim komutları sırasında kullanılacak olan aktif indeks tamponunu (index buffer) cihaza bağlar.
+</pre>
+<h1 id="doc-SetLight"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetLight</h1>
+<pre>
+Sabit fonksiyonlu işlem hattında kullanılacak olan bir ışık kaynağının özelliklerini (renk, menzil, konum) tanımlar.
+</pre>
+<h1 id="doc-SetMaterial"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetMaterial</h1>
+<pre>
+Yüzeylerin ışığı nasıl yansıtacağını veya soğuracağını belirleyen materyal özelliklerini (Ambient, Diffuse, Specular) atar.
+</pre>
+<h1 id="doc-SetNPatchMode"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetNPatchMode</h1>
+<pre>
+N-patch (normal tabanlı mozaikleme) özelliğinin segmentasyon seviyesini veya aktiflik durumunu belirler.
+</pre>
+<h1 id="doc-SetPaletteEntries"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetPaletteEntries</h1>
+<pre>
+Paletli dokular için kullanılan renk tablosundaki girişleri (indeksli renk değerlerini) günceller.
+</pre>
+<h1 id="doc-SetPixelShader"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetPixelShader</h1>
+<pre>
+O anda pikselleri işlemek (renklendirmek) için kullanılacak olan aktif piksel shader nesnesini cihaza bağlar.
+</pre>
+<h1 id="doc-SetPixelShaderConstantB"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetPixelShaderConstantB</h1>
+<pre>
+Piksel shader içerisindeki mantıksal (boolean) sabit register değerlerini (constant registers) atar.
+</pre>
+<h1 id="doc-SetPixelShaderConstantF"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetPixelShaderConstantF</h1>
+<pre>
+Piksel shader içerisindeki kayan noktalı (floating-point) sabit register değerlerini atar.
+</pre>
+<h1 id="doc-SetPixelShaderConstantI"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetPixelShaderConstantI</h1>
+<pre>
+Piksel shader içerisindeki tam sayı (integer) tabanlı sabit register değerlerini atar.
+</pre>
+<h1 id="doc-SetRenderState"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetRenderState</h1>
+<pre>
+Cihazın genel çizim ayarlarını (Derinlik testi, Alpha karıştırma, arka yüzey gizleme vb.) yapılandırır.
+</pre>
+<h1 id="doc-SetRenderTarget"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetRenderTarget</h1>
+<pre>
+Cihazın üzerine çizim yapacağı hedef yüzeyi (render target) yeni bir yüzeyle veya dokuyla değiştirir.
+</pre>
+<h1 id="doc-SetSamplerState"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetSamplerState</h1>
+<pre>
+Bir dokunun nasıl örnekleneceğini (yumuşatma filtresi, doku tekrarlama modları) belirleyen durum değerlerini atar.
+</pre>
+<h1 id="doc-SetScissorRect"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetScissorRect</h1>
+<pre>
+Çizimi belirli bir dikdörtgen alanla (scissor rectangle) sınırlandıran kırpma bölgesini aktif eder.
+</pre>
+<h1 id="doc-SetSoftwareVertexProcessing"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetSoftwareVertexProcessing</h1>
+<pre>
+Köşe (vertex) hesaplama işlemlerinin o anda yazılımsal (CPU) mı yoksa donanımsal (GPU) mı yapılacağını değiştirir.
+</pre>
+<h1 id="doc-SetStreamSource"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetStreamSource</h1>
+<pre>
+Belirli bir veri akış kanalına, çizilecek köşeleri içeren bir köşe tamponunu (vertex buffer) bağlar.
+</pre>
+<h1 id="doc-SetStreamSourceFreq"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetStreamSourceFreq</h1>
+<pre>
+Bir veri akış kaynağının kullanım sıklığını (frekansını) belirler. Özellikle Geometri Örneklendirme (Instancing) işlemlerinde aynı veriyi tekrar kullanmak için gereklidir.
+</pre>
+<h1 id="doc-SetTexture"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetTexture</h1>
+<pre>
+Belirtilen bir doku aşamasına (texture stage) veya shader örneklendiricisine (sampler) bir doku nesnesi bağlar.
+</pre>
+<h1 id="doc-SetTextureStageState"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetTextureStageState</h1>
+<pre>
+Sabit fonksiyonlu işlem hattında (FFP), dokuların birbiriyle nasıl harmanlanacağını ve renk işlemlerini (ColorOp, AlphaOp) yapılandırır.
+</pre>
+<h1 id="doc-SetTransform"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetTransform</h1>
+<pre>
+Sabit fonksiyonlu işlem hattında kullanılan dönüşüm matrislerini (World, View, Projection) ayarlar.
+</pre>
+<h1 id="doc-SetVertexDeclaration"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetVertexDeclaration</h1>
+<pre>
+GPU'ya, ham vertex verilerinin bellekteki dizilimini (pozisyon, normal, doku koordinatı vb.) tarif eden bildirim nesnesini bağlar.
+</pre>
+<h1 id="doc-SetVertexShader"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetVertexShader</h1>
+<pre>
+Köşe koordinatlarını hesaplamak ve dönüştürmek için kullanılacak olan aktif köşe shader nesnesini cihaza bağlar.
+</pre>
+<h1 id="doc-SetVertexShaderConstantB"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetVertexShaderConstantB</h1>
+<pre>
+Köşe shader içerisindeki mantıksal (boolean) sabit register değerlerini atar.
+</pre>
+<h1 id="doc-SetVertexShaderConstantF"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetVertexShaderConstantF</h1>
+<pre>
+Köşe shader içerisindeki kayan noktalı (floating-point) sabit register değerlerini (genelde matrisler) atar.
+</pre>
+<h1 id="doc-SetVertexShaderConstantI"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetVertexShaderConstantI</h1>
+<pre>
+Köşe shader içerisindeki tam sayı (integer) tabanlı sabit register değerlerini atar.
+</pre>
+<h1 id="doc-SetViewport"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::SetViewport</h1>
+<pre>
+3D koordinatların 2D ekran düzlemine nasıl yansıtılacağını belirleyen bakış alanı (viewport) parametrelerini aktif eder.
+</pre>
+<h1 id="doc-ShowCursor"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::ShowCursor</h1>
+<pre>
+Donanımsal fare imlecinin ekranda gösterilip gösterilmeyeceğini belirler.
+</pre>
+<h1 id="doc-StretchRect"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::StretchRect</h1>
+<pre>
+Bir kaynak yüzeydeki pikselleri, boyutlandırarak veya format dönüşümü yaparak hedef bir yüzeye kopyalar.
+</pre>
+<h1 id="doc-TestCooperativeLevel"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::TestCooperativeLevel</h1>
+<pre>
+Cihazın o anki durumunu (çalışıyor mu, cihaz kaybedildi mi veya resetlenmesi mi gerekiyor) kontrol eder.
+</pre>
+<h1 id="doc-UpdateSurface"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::UpdateSurface</h1>
+<pre>
+Sistem belleğindeki (RAM) bir yüzeyin içeriğini, ekran kartı belleğindeki (VRAM) bir yüzeye kopyalar.
+</pre>
+<h1 id="doc-UpdateTexture"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::UpdateTexture</h1>
+<pre>
+Sistem belleğinde oluşturulmuş bir dokunun içeriğini, video belleğindeki eşlenik dokuyla senkronize eder.
+</pre>
+<h1 id="doc-ValidateDevice"><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>::ValidateDevice</h1>
+<pre>
+Donanımın, o anki render ayarları ve doku aşamalarıyla tek bir geçişte (pass) çizim yapıp yapamayacağını doğrular.
+</pre>
+
+
+<h1 id="doc-GetDesc1"><a href="#doc-idirect3dindexbuffer9">IDirect3DIndexBuffer9</a>::GetDesc</h1>
+<pre>
+İndeks tamponunun teknik özelliklerini (boyut, format, kullanım amacı ve bellek havuzu) bir yapı içerisine doldurur.
+</pre>
+<h1 id="doc-Lock1"><a href="#doc-idirect3dindexbuffer9">IDirect3DIndexBuffer9</a>::Lock</h1>
+<pre>
+İndeks verilerine erişebilmek için tamponun belirli bir bellek bölgesini kilitler ve CPU'nun yazabileceği bir adres döndürür.
+</pre>
+<h1 id="doc-Unlock1"><a href="#doc-idirect3dindexbuffer9">IDirect3DIndexBuffer9</a>::Unlock</h1>
+<pre>
+Lock ile kilitlenen indeks verilerini serbest bırakır ve yapılan değişiklikleri GPU'nun kullanımına sunar.
+</pre>
+
+
+<h1 id="doc-GetDevice1"><a href="#doc-idirect3dpixelshader9">IDirect3DPixelShader9</a>::GetDevice</h1>
+<pre>
+Bu piksel shader nesnesini oluşturmuş olan ana Direct3D cihazının (Device) bellek adresini döndürür.
+</pre>
+<h1 id="doc-GetFunction1"><a href="#doc-idirect3dpixelshader9">IDirect3DPixelShader9</a>::GetFunction</h1>
+<pre>
+Shader'ın bellekteki derlenmiş ham bayt kodunun (byte code) bir kopyasını alır. Shader verisinin boyutunu sorgulamak veya kodu başka bir yere kopyalamak için kullanılır.
+</pre>
+
+
+<h1 id="doc-GetData"><a href="#doc-idirect3dquery9">IDirect3DQuery9</a>::GetData</h1>
+<pre>
+GPU tarafından işlenen sorgu sonucunu okur ve sistem belleğine aktarır. Verinin hazır olup olmadığını kontrol etmek için de kullanılabilir.
+</pre>
+<h1 id="doc-GetDataSize"><a href="#doc-idirect3dquery9">IDirect3DQuery9</a>::GetDataSize</h1>
+<pre>
+Sorgu tamamlandığında dönecek olan verinin toplam boyutunu bayt cinsinden verir.
+</pre>
+<h1 id="doc-GetDevice2"><a href="#doc-idirect3dquery9">IDirect3DQuery9</a>::GetDevice</h1>
+<pre>
+Bu sorgu nesnesini oluşturmuş olan ana Direct3D cihazının (Device) bellek adresini döndürür.
+</pre>
+<h1 id="doc-GetType1"><a href="#doc-idirect3dquery9">IDirect3DQuery9</a>::GetType</h1>
+<pre>
+Sorgunun türünü (Occlusion, Event, Timestamp vb.) tanımlayan değeri getirir.
+</pre>
+<h1 id="doc-Issue"><a href="#doc-idirect3dquery9">IDirect3DQuery9</a>::Issue</h1>
+<pre>
+Sorguyu başlatmak, bitirmek veya GPU komut kuyruğuna dahil etmek için kullanılır. Sorgunun kapsamını (başlangıç ve bitiş noktalarını) belirler.
+</pre>
+
+
+<h1 id="doc-FreePrivateData"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::FreePrivateData</h1>
+<pre>
+Bir kaynağa (resource) daha önce SetPrivateData ile atanmış olan kullanıcıya özel veriyi bellekten siler ve serbest bırakır.
+</pre>
+<h1 id="doc-GetDevice3"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::GetDevice</h1>
+<pre>
+Bu kaynağın (doku, tampon vb.) hangi Direct3D cihazı (Device) tarafından oluşturulduğunu ve yönetildiğini döndürür.
+</pre>
+<h1 id="doc-GetPriority"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::GetPriority</h1>
+<pre>
+Yönetilen (Managed) bir kaynağın video belleğinden tahliye edilmesi durumunda kullanılan öncelik değerini sorgular.
+</pre>
+<h1 id="doc-GetPrivateData"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::GetPrivateData</h1>
+<pre>
+Bir kaynağa atanmış olan kullanıcıya özel verileri (private data) okur ve belirtilen bir tampona kopyalar.
+</pre>
+<h1 id="doc-GetType2"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::GetType</h1>
+<pre>
+Kaynağın fiziksel tipini (Texture, VertexBuffer, IndexBuffer vb.) tanımlayan bir değer döndürür.
+</pre>
+<h1 id="doc-PreLoad"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::PreLoad</h1>
+<pre>
+Yönetilen bir kaynağın (Managed Resource) video belleğine (VRAM) önceden yüklenmesini talep eder.
+</pre>
+<h1 id="doc-SetPriority"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::SetPriority</h1>
+<pre>
+Kaynağın video belleğindeki önceliğini belirler; VRAM dolduğunda düşük öncelikli kaynaklar daha önce sistem belleğine (RAM) atılır.
+</pre>
+<h1 id="doc-SetPrivateData"><a href="#doc-idirect3dresource9">IDirect3DResource9</a>::SetPrivateData</h1>
+<pre>
+Bir kaynağa, uygulamanın kendi içinde kullanması için özel bayt verileri veya bir uygulama arayüzü (IUnknown) bağlar.
+</pre>
+
+
+<h1 id="doc-Apply"><a href="#doc-idirect3dstateblock9">IDirect3DStateBlock9</a>::Apply</h1>
+<pre>
+Daha önce kaydedilmiş olan tüm cihaz durumlarını (states) ve ayarlarını grafik kartına (GPU) yeniden uygular.
+</pre>
+<h1 id="doc-Capture"><a href="#doc-idirect3dstateblock9">IDirect3DStateBlock9</a>::Capture</h1>
+<pre>
+Cihazın o andaki mevcut tüm render ayarlarını ve durum değerlerini kopyalayarak state block nesnesi içerisine kaydeder.
+</pre>
+<h1 id="doc-GetDevice4"><a href="#doc-idirect3dstateblock9">IDirect3DStateBlock9</a>::GetDevice</h1>
+<pre>
+Bu state block nesnesini oluşturmuş olan ana Direct3D cihazının (Device) bellek adresini döndürür.
+</pre>
+
+
+<h1 id="doc-GetContainer"><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a>::GetContainer</h1>
+<pre>
+Eğer yüzey bir doku veya küp doku nesnesine aitse (mipmap seviyesi gibi), o yüzeyi içeren ana nesneye (container) erişim sağlar.
+</pre>
+<h1 id="doc-GetDC"><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a>::GetDC</h1>
+<pre>
+Yüzey üzerinde GDI (Windows Grafik Arayüzü) fonksiyonlarını kullanarak çizim yapabilmek için bir cihaz bağlamı (Device Context - HDC) oluşturur.
+</pre>
+<h1 id="doc-GetDesc2"><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a>::GetDesc</h1>
+<pre>
+Yüzeyin genişlik, yükseklik, format ve bellek havuzu (pool) gibi teknik tanımlayıcı bilgilerini sorgular.
+</pre>
+<h1 id="doc-LockRect2"><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a>::LockRect</h1>
+<pre>
+Yüzeydeki ham piksel verilerine CPU üzerinden erişmek için yüzeyi kilitler. İşlem sonucunda piksellerin bellekteki başlangıç adresini ve satır genişliğini (Pitch) döndürür.
+</pre>
+<h1 id="doc-ReleaseDC"><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a>::ReleaseDC</h1>
+<pre>
+GetDC ile alınmış olan cihaz bağlamını (HDC) serbest bırakır ve GDI ile yapılan çizimi yüzeye kalıcı olarak işler.
+</pre>
+<h1 id="doc-UnlockRect2"><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a>::UnlockRect</h1>
+<pre>
+LockRect ile kilitlenmiş olan yüzeyi serbest bırakır; CPU tarafındaki piksel değişikliklerini GPU'nun tekrar kullanabilmesini sağlar.
+</pre>
+
+
+<h1 id="doc-GetBackBuffersw"><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>::GetBackBuffer</h1>
+<pre>
+Görüntü zinciri (swap chain) içerisindeki belirli bir arka tamponun (back buffer) yüzey adresini (IDirect3DSurface9) döndürür.
+</pre>
+<h1 id="doc-GetDevicesw"><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>::GetDevice</h1>
+<pre>
+Bu görüntü zinciri nesnesini oluşturmuş olan ana Direct3D cihazının (Device) bellek adresini getirir.
+</pre>
+<h1 id="doc-GetDisplayModesw"><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>::GetDisplayMode</h1>
+<pre>
+Görüntü zincirinin o andaki çözünürlük, tazeleme hızı ve renk formatı bilgilerini döndürür.
+</pre>
+<h1 id="doc-GetFrontBufferDatasw"><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>::GetFrontBufferData</h1>
+<pre>
+Ekran kartının o anda monitöre gönderdiği ön tamponun (front buffer) bir kopyasını oluşturur ve sistem belleğine (RAM) aktarır.
+</pre>
+<h1 id="doc-GetPresentParameterssw"><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>::GetPresentParameters</h1>
+<pre>
+Görüntü zinciri oluşturulurken kullanılan sunum parametrelerini (pencere modu, arka tampon sayısı vb.) bir yapı içerisine doldurur.
+</pre>
+<h1 id="doc-GetRasterStatussw"><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>::GetRasterStatus</h1>
+<pre>
+Monitörün o andaki tarama (raster) durumunu, hangi satırı çizdiğini ve dikey boşluk (VBlank) bilgisini döndürür.
+</pre>
+<h1 id="doc-Presentsw"><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>::Present</h1>
+<pre>
+Arka tamponda hazırlanan görüntü içeriğini ön tampona aktararak ekranda görüntülenmesini sağlar. Bu işlem belirli bir dikdörtgen alanla sınırlandırılabilir.
+</pre>
+
+
+<h1 id="doc-AddDirtyRecttx"><a href="#doc-idirect3dtexture9">IDirect3DTexture9</a>::AddDirtyRect</h1>
+<pre>
+Dokunun belirli bir bölgesinin değiştiğini (kirli olduğunu) sisteme bildirir. Bir sonraki çizimde tüm doku yerine sadece bu bölgenin güncellenmesini sağlayarak performans artırır.
+</pre>
+<h1 id="doc-GetLevelDesctx"><a href="#doc-idirect3dtexture9">IDirect3DTexture9</a>::GetLevelDesc</h1>
+<pre>
+Dokunun belirli bir mipmap seviyesine ait teknik detayları (genişlik, yükseklik, format, havuz tipi) sorgular.
+</pre>
+<h1 id="doc-GetSurfaceLeveltx"><a href="#doc-idirect3dtexture9">IDirect3DTexture9</a>::GetSurfaceLevel</h1>
+<pre>
+Dokunun belirli bir mipmap seviyesini, üzerinde işlem yapılabilecek bir yüzey (IDirect3DSurface9) nesnesi olarak döndürür.
+</pre>
+<h1 id="doc-LockRecttx"><a href="#doc-idirect3dtexture9">IDirect3DTexture9</a>::LockRect</h1>
+<pre>
+Dokunun belirli bir mipmap seviyesindeki piksel verilerine CPU ile erişmek için ilgili alanı kilitler; ham veri adresi ve satır genişliğini (pitch) verir.
+</pre>
+<h1 id="doc-UnlockRecttx"><a href="#doc-idirect3dtexture9">IDirect3DTexture9</a>::UnlockRect</h1>
+<pre>
+LockRect ile yapılan kilitleme işlemini sonlandırır. Yapılan piksel değişikliklerini GPU belleğine aktararak dokuyu kullanıma hazır hale getirir.
+</pre>
+
+
+<h1 id="doc-GetDescvb"><a href="#doc-idirect3dvertexbuffer9">IDirect3DVertexBuffer9</a>::GetDesc</h1>
+<pre>
+Köşe (vertex) tamponunun teknik detaylarını (boyut, FVF formatı, kullanım amacı vb.) sorgular.
+</pre>
+<h1 id="doc-Lockvb"><a href="#doc-idirect3dvertexbuffer9">IDirect3DVertexBuffer9</a>::Lock</h1>
+<pre>
+Köşe verilerini okumak veya güncellemek için tamponun bellek bölgesini kilitler; ham veri erişimi sağlar.
+</pre>
+<h1 id="doc-Unlockvb"><a href="#doc-idirect3dvertexbuffer9">IDirect3DVertexBuffer9</a>::Unlock</h1>
+<pre>
+Köşe tamponu üzerindeki kilit işlemini sonlandırarak veriyi ekran kartı için hazır hale getirir.
+</pre>
+
+
+<h1 id="doc-GetDevicevd"><a href="#doc-idirect3dvertexdeclaration9">IDirect3DVertexDeclaration9</a>::GetDevice</h1>
+<pre>
+Bu köşe bildirim (vertex declaration) nesnesini oluşturmuş olan ana Direct3D cihazının (Device) bellek adresini döndürür.
+</pre>
+<h1 id="doc-GetDeclarationvd"><a href="#doc-idirect3dvertexdeclaration9">IDirect3DVertexDeclaration9</a>::GetDeclaration</h1>
+<pre>
+Köşe verilerinin bellekteki dizilimini tarif eden D3DVERTEXELEMENT9 yapı dizisini (element array) bir tampona kopyalar. Bu sayede mevcut bildirimin hangi veri tiplerini (float, byte vb.) ve kullanım amaçlarını (Position, Color vb.) içerdiği sorgulanabilir.
+</pre>
+
+
+<h1 id="doc-FreePrivateDatav"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::FreePrivateData</h1>
+<pre>
+Bu hacimsel nesneye daha önce SetPrivateData ile atanmış olan kullanıcıya özel veriyi bellekten siler.
+</pre>
+<h1 id="doc-GetContainerv"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::GetContainer</h1>
+<pre>
+Eğer bu hacim bir hacimsel dokunun (Volume Texture) parçasıysa, onu içeren ana nesneye erişim sağlar.
+</pre>
+<h1 id="doc-GetDevicev"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::GetDevice</h1>
+<pre>
+Bu hacimsel nesneyi oluşturmuş olan ana Direct3D cihazının (Device) bellek adresini döndürür.
+</pre>
+<h1 id="doc-GetDescv"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::GetDesc</h1>
+<pre>
+Hacmin genişlik, yükseklik, derinlik ve piksel formatı gibi teknik tanımlayıcı bilgilerini sorgular.
+</pre>
+<h1 id="doc-GetPrivateDatav"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::GetPrivateData</h1>
+<pre>
+Hacimsel nesneye atanmış olan kullanıcıya özel verileri (private data) okur ve belirtilen bir tampona kopyalar.
+</pre>
+<h1 id="doc-LockBoxv"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::LockBox</h1>
+<pre>
+3D hacim verisindeki belirli bir kutu (box) bölgesini kilitler. İşlem sonucunda piksellere erişim için ham bellek adresi ile birlikte satır (RowPitch) ve dilim (SlicePitch) genişliklerini döndürür.
+</pre>
+<h1 id="doc-SetPrivateDatav"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::SetPrivateData</h1>
+<pre>
+Hacimsel nesneye, uygulamanın kendi içinde kullanması için özel bayt verileri veya bir uygulama arayüzü bağlar.
+</pre>
+<h1 id="doc-UnlockBoxv"><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>::UnlockBox</h1>
+<pre>
+LockBox ile kilitlenmiş olan hacim bölgesini serbest bırakır; CPU tarafındaki veri değişikliklerini GPU'nun kullanımına sunar.
+</pre>
+
+
+<h1 id="doc-AddDirtyBoxvt"><a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a>::AddDirtyBox</h1>
+<pre>
+Hacimsel dokunun belirli bir kutu (box) bölgesinin değiştiğini (kirli olduğunu) sisteme bildirir. Bu sayede bir sonraki çizimde dokunun tamamı yerine sadece bu bölge güncellenerek performans kazanılır.
+</pre>
+<h1 id="doc-GetLevelDescvt"><a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a>::GetLevelDesc</h1>
+<pre>
+Hacimsel dokunun belirli bir mipmap seviyesine ait teknik detayları (genişlik, yükseklik, derinlik, format vb.) sorgular.
+</pre>
+<h1 id="doc-GetVolumeLevelvt"><a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a>::GetVolumeLevel</h1>
+<pre>
+Hacimsel dokunun belirli bir mipmap seviyesini, üzerinde işlem yapılabilecek bir IDirect3DVolume9 nesnesi olarak döndürür.
+</pre>
+<h1 id="doc-LockBoxvt"><a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a>::LockBox</h1>
+<pre>
+Hacimsel dokunun belirli bir mipmap seviyesindeki piksel (voxel) verilerine erişmek için ilgili bölgeyi kilitler. İşlem sonunda ham veri adresini ve bellek atlama değerlerini (Pitch/SlicePitch) döndürür.
+</pre>
+<h1 id="doc-UnlockBoxvt"><a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a>::UnlockBox</h1>
+<pre>
+LockBox ile yapılan kilitleme işlemini sonlandırır ve yapılan veri değişikliklerini GPU belleği için hazır hale getirir.
+</pre>
+
+
+</code>
+</body>
