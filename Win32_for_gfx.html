@@ -18,9 +18,12 @@
         color: #e63946;
     }
     button:hover { text-decoration: underline; color:#a8dadc; cursor: pointer;}
-    a { text-decoration: none; color:#e63946 }
+    a { text-decoration: underline; color:#e63946 }
     a:hover { text-decoration: underline; color:#a8dadc }
     .pop { font-size: x-large; background: #000000; color: #e63946; }
+    .popbtn { text-decoration: underline; }
+    table { border-collapse: collapse; }
+    td { padding: 10px; border: 1px solid #e63946; color:#a8dadc; }
 </style>
 <body style="background: #1d3557;">
 <code>
@@ -29,7 +32,9 @@
     Win32 api ile program yazmak o her örnekte gördüğünüz upuzun <button popovertarget="pop-WinMain">WinMain</button> giriş fonksiyonunu yazmanıza gerek yok. Bunun yerine main fonksiyonunun içinde, programın örneğini alabilirsiniz. Bunu yapmak için <button popovertarget="pop-GetModuleHandleA">GetModuleHandleA</button> fonksiyonunu kullanmalısınız. Argüman olarak NULL gönderirseniz şuanda kullandığınız programı döndürür.
     Pencere yaratmamızı sağlaması için bir <button popovertarget="pop-WNDCLASSA">WNDCLASSA</button> yapısına ihtiyacımız var. Bunu yaratıp içini doldurmalıyız. Eğer her detayla uğraşmak istemezseniz minimal olarak şunları doldurabilirsiniz: .hInstance, .lpfnWndProc, .lpszClassName. Fakat burada önemli bir nokta var. Döngünün düzgün sağlanması için lpfnWndPoc'a vereceğimiz bir <button popovertarget="pop-Callback">callback fonksiyonu</button> oluşturmanız lazım. Ardından bu sınıfı <button popovertarget="pop-RegisterClassA">RegisterClassA</button> fonksiyonu ile kayıt ettirmemiz gerekiyor.
     Artık pencere yaratma aşamasına geçebiliriz. <button popovertarget="pop-CreateWindowExA">CreateWindowExA</button> fonksiyonunu kullarak pencereyi yaratıp ondan sorumlu adresi alıyoruz. Bu adres OpenGL, DirectX gibi arayüzler ile uğraşırken çok gerekli olacak.
-    Ha unutmadan bir de şundan bahsetmek gerek, program döngüsünde pencereyi güncellemekten sorumlu bir <button popovertarget="pop-MSG">mesaj döngüsü</button> oluşturmamız lazım
+    Ha unutmadan bir de şundan bahsetmek gerek, program döngüsünde pencereyi güncellemekten sorumlu bir <button popovertarget="pop-MSG">mesaj döngüsü</button> oluşturmamız lazım. 
+    Klavye girdisi almak isterseniz <button popovertarget="pop-GetAsyncKeyState">GetAsyncKeyState</button> fonksiyonu oldukça işe yarar bir fonksiyon. Ama daha detaylı olarak halletmek isterseniz bu input işlerini veya daha farklı döngüsel işleri, bunun için callback fonksiyonunda gelen mesaj türlerine göre ayarlamazın gerekiyor.
+    Eğer bunların hepsini hallettiyseniz gerisi aslında çok kolay. Bize karmaşıkmış gelen şeyler aslında sadece bizim gözümüzde büyütmemizden ibaret. Bir kez başlayınca anlıyorsunuz. Win32 ile daha fazla işiniz kalmadı. Sıra grafikler arayüzlerinde. Kolay gelsin.
 
 </pre>
 <!-- POPOVER -->
@@ -67,11 +72,11 @@ Header: winuser.h (include Windows.h)
 </pre>
 <pre class="pop" id="pop-Callback" popover>
 Example:
-static LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam) {
-    switch (umessage) {
+static LRESULT CALLBACK WndProc(HWND hwnd, UINT <a href="https://learn.microsoft.com/en-us/windows/win32/winmsg/about-messages-and-message-queues#system-defined-messages">umessage</a>, WPARAM wparam, LPARAM lparam) {
+    switch (<a href="https://learn.microsoft.com/en-us/windows/win32/winmsg/about-messages-and-message-queues#system-defined-messages">umessage</a>) {
     case WM_DESTROY: PostQuitMessage(0); return 0;
     case WM_CLOSE: DestroyWindow(hwnd); return 0;
-    default: return DefWindowProc(hwnd, umessage, wparam, lparam);
+    default: return DefWindowProc(hwnd, <a href="https://learn.microsoft.com/en-us/windows/win32/winmsg/about-messages-and-message-queues#system-defined-messages">umessage</a>, wparam, lparam);
     }
 }
 </pre>
@@ -118,6 +123,50 @@ while (PeekMessage(&msg, m_hwnd, 0, 0, PM_REMOVE)) {
 }
 ...
 </pre>
+
+
+<pre class="pop" id="pop-GetAsyncKeyState" popover>
+SHORT GetAsyncKeyState(
+    [in] int <button class="popbtn" popovertarget="pop-vkey">vKey</button>
+);
+
+Header: winuser.h (include Windows.h)
+Library: User32.lib
+</pre>
+<div class="pop" id="pop-vkey" popover>
+    Bazı Önemli Tuşlar
+    <table><tbody>
+        <tr>
+            <td>VK_LBUTTON</td>
+            <td>Left mouse button</td>
+        </tr>
+        <tr>
+            <td>VK_RBUTTON</td>
+            <td>Right mouse button</td>
+        </tr>
+        <tr>
+            <td>VK_RETURN</td>
+            <td>Enter key</td>
+        </tr>
+        <tr>
+            <td>VK_SHIFT</td>
+            <td>Shift key</td>
+        </tr>
+        <tr>
+            <td>VK_CONTROL</td>
+            <td>Ctrl key</td>
+        </tr>
+        <tr>
+            <td>VK_ESCAPE</td>
+            <td>Esc key</td>
+        </tr>
+        <tr>
+            <td>'A'</td>
+            <td>A key</td>
+        </tr>
+    </tbody></table>
+    Hepsi için <a href="https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes">msdn</a>
+</div>
 
 </code>
 </body>
