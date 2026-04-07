@@ -1,12 +1,14 @@
 <head><title>D3D9</title></head>
 <!--  -->
 <style>
-    table, pre, ul {font-size:x-large; background: #151515; color:#ffffff}
+    table, pre, li {font-size:x-large; background: #151515; color:#ffffff}
     pre {word-wrap: break-word; white-space: pre-wrap;}
     .head, h1 {color: #6cc66b; padding-top: 24px;}
     td {padding-left: 24px; padding-bottom: 2px;}
     a { text-decoration: none; }
     a:hover { text-decoration: underline; }
+    pre a { background: #151515; color:#ffffff; }
+    pre a:hover { background: #151515; color:#6cc66b; }
     h1 a:hover, td a, li a { color: #ffffff; }
     h1 a, td a:hover, li a:hover { color: #6cc66b; }
     .pop-fn { font-size: x-large; background: #000000; color: #6cc66b; }
@@ -30,6 +32,8 @@
     }
     pre button { text-decoration: underline; color: inherit; }
     pre button:hover { text-decoration: underline; color: inherit; }
+    .iunknown { text-decoration: none; color:#ffffff; }
+    .iunknown:hover { text-decoration: underline; color:#6cc66b; }
 </style>
 <body style="background: #151515;">
 
@@ -56,25 +60,34 @@ Fonksiyon Kullanım Şekli:
     </ul>
 
     <h1 class="head" id="doc-interfaces">Interfaces</h1>
-    <ul>
-        <li><a href="#doc-idirect3d9">IDirect3D9</a></li>
-        <li><a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a></li>
-        <li><a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a></li>
-        <li><a href="#doc-idirect3ddevice9">IDirect3DDevice9</a></li>
-        <li><a href="#doc-idirect3dindexbuffer9">IDirect3DIndexBuffer9</a></li>
-        <li><a href="#doc-idirect3dpixelshader9">IDirect3DPixelShader9</a></li>
-        <li><a href="#doc-idirect3dquery9">IDirect3DQuery9</a></li>
-        <li><a href="#doc-idirect3dresource9">IDirect3DResource9</a></li>
-        <li><a href="#doc-idirect3dstateblock9">IDirect3DStateBlock9</a></li>
-        <li><a href="#doc-idirect3dsurface9">IDirect3DSurface9</a></li>
-        <li><a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a></li>
-        <li><a href="#doc-idirect3dtexture9">IDirect3DTexture9</a></li>
-        <li><a href="#doc-idirect3dvertexbuffer9">IDirect3DVertexBuffer9</a></li>
-        <li><a href="#doc-idirect3dvertexdeclaration9">IDirect3DVertexDeclaration9</a></li>
-        <li><a href="#doc-idirect3dvertexshader9">IDirect3DVertexShader9</a></li>
-        <li><a href="#doc-idirect3dvolume9">IDirect3DVolume9</a></li>
-        <li><a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a></li>
-    </ul>
+
+<pre>
+    <button popovertarget="pop-IUnknown" class="iunknown">IUnknown</button>                     
+    ├►<a href="#doc-idirect3d9">IDirect3D9</a>                 
+    ├►<a href="#doc-idirect3ddevice9">IDirect3DDevice9</a>           
+    ├►<a href="#doc-idirect3dpixelshader9">IDirect3DPixelShader9</a>      
+    ├►<a href="#doc-idirect3dquery9">IDirect3DQuery9</a>            
+    ├►<a href="#doc-idirect3dresource9">IDirect3DResource9</a>         
+    │ ├►<a href="#doc-idirect3dbasetexture9">IDirect3DBaseTexture9</a>    
+    │ │ ├►<a href="#doc-idirect3dcubetexture9">IDirect3DCubeTexture9</a>  
+    │ │ ├►<a href="#doc-idirect3dtexture9">IDirect3DTexture9</a>      
+    │ │ └►<a href="#doc-idirect3dvolumetexture9">IDirect3DVolumeTexture9</a>
+    │ ├►<a href="#doc-idirect3dindexbuffer9">IDirect3DIndexBuffer9</a>    
+    │ ├►<a href="#doc-idirect3dsurface9">IDirect3DSurface9</a>        
+    │ ├►<a href="#doc-idirect3dvertexbuffer9">IDirect3DVertexBuffer9</a>  
+    │ └►<a href="#doc-idirect3dvolume9">IDirect3DVolume9</a>         
+    ├►<a href="#doc-idirect3dstateblock9">IDirect3DStateBlock9</a>       
+    ├►<a href="#doc-idirect3dswapchain9">IDirect3DSwapChain9</a>        
+    ├►<a href="#doc-idirect3dvertexdeclaration9">IDirect3DVertexDeclaration9</a>
+    └►<a href="#doc-idirect3dvertexshader9">IDirect3DVertexShader9</a>     
+</pre>
+
+<pre class="pop-fn" id="pop-IUnknown" popover>
+ULONG IUnknown::AddRef();
+HRESULT IUnknown::QueryInterface(REFIID riid, void **ppvObject);
+    ret: E_NOINTERFACE, E_POINTER
+ULONG IUnknown::Release();
+</pre>
 
     <hr>
 
@@ -396,15 +409,15 @@ Fonksiyon Kullanım Şekli:
             <td colspan="2" class="head" id="doc-idirect3dquery9"><a href="#doc-interfaces">^</a>IDirect3DQuery9::</td>
         </tr>
         <tr>
-            <td><button popovertarget="pop-IDirect3DQuery9::GetDevice">GetData</button></td>
-            <td><button popovertarget="pop-IDirect3DQuery9::GetDevice">GetDataSize</button></td>
+            <td><button popovertarget="pop-IDirect3DQuery9::GetData">GetData</button></td>
+            <td><button popovertarget="pop-IDirect3DQuery9::GetDataSize">GetDataSize</button></td>
         </tr>
         <tr>
             <td><button popovertarget="pop-IDirect3DQuery9::GetDevice">GetDevice</button></td>
-            <td><button popovertarget="pop-IDirect3DQuery9::GetDevice">GetType</button></td>
+            <td><button popovertarget="pop-IDirect3DQuery9::GetType">GetType</button></td>
         </tr>
         <tr>
-            <td><button popovertarget="pop-IDirect3DQuery9::GetDevice">Issue</button></td>
+            <td><button popovertarget="pop-IDirect3DQuery9::Issue">Issue</button></td>
         </tr>
         <tr>
             <td colspan="2" class="head" id="doc-idirect3dresource9"><a href="#doc-interfaces">^</a>IDirect3DResource9::</td>
@@ -843,6 +856,359 @@ Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
 </pre>
 
 
+<pre class="pop-fn" id="pop-IDirect3DDevice9::BeginScene" popover>
+HRESULT BeginScene();
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::BeginStateBlock" popover>
+HRESULT BeginStateBlock();
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::Clear" popover>
+HRESULT Clear(
+    [in]  DWORD Count,
+    [in]  const <button popovertarget="pop-D3DRECT">D3DRECT</button> *pRects,
+    [in]  DWORD <button popovertarget="pop-D3DCLEAR">Flags</button>,
+    [in]  <button popovertarget="pop-D3DCOLOR">D3DCOLOR</button> Color,
+    [in]  float Z,
+    [in]  DWORD Stencil
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::ColorFill" popover>
+HRESULT ColorFill(
+    [in]  IDirect3DSurface9 *pSurface,
+    [in]  const RECT *pRect,
+    [in]  <button popovertarget="pop-D3DCOLOR">D3DCOLOR</button> color
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateAdditionalSwapChain" popover>
+HRESULT CreateAdditionalSwapChain(
+    [in, out]      <button popovertarget="pop-D3DPRESENT_PARAMETERS">D3DPRESENT_PARAMETERS</button> *pPresentationParameters,
+    [out, retval]  IDirect3DSwapChain9 **ppSwapChain
+);
+
+ret: D3D_OK, D3DERR_NOTAVAILABLE, D3DERR_DEVICELOST, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateCubeTexture" popover>
+HRESULT CreateCubeTexture(
+    [in]           UINT EdgeLength,
+    [in]           UINT Levels,
+    [in]           DWORD <button popovertarget="pop-D3DUSAGE">Usage</button>,
+    [in]           <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button> Format,
+    [in]           <button popovertarget="pop-D3DPOOL">D3DPOOL</button> Pool,
+    [out, retval]  IDirect3DCubeTexture9 **ppCubeTexture,
+    [in]           HANDLE *pSharedHandle // NULL
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateDepthStencilSurface" popover>
+HRESULT CreateDepthStencilSurface(
+    [in]           UINT Width,
+    [in]           UINT Height,
+    [in]           <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button> Format,
+    [in]           <button popovertarget="pop-D3DMULTISAMPLE_TYPE">D3DMULTISAMPLE_TYPE</button> MultiSample,
+    [in]           DWORD MultisampleQuality,
+    [in]           BOOL Discard,
+    [out, retval]  IDirect3DSurface9 **ppSurface,
+    [in]           HANDLE *pSharedHandle // NULL
+);
+
+ret: D3D_OK, D3DERR_NOTAVAILABLE, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateOffscreenPlainSurface" popover>
+HRESULT CreateOffscreenPlainSurface(
+    [in]           UINT Width,
+    [in]           UINT Height,
+    [in]           <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button> Format,
+    [in]           <button popovertarget="pop-D3DPOOL">D3DPOOL</button> Pool,
+    [out, retval]  IDirect3DSurface9 **ppSurface,
+    [in]           HANDLE *pSharedHandle // NULL
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreatePixelShader" popover>
+HRESULT CreatePixelShader(
+    [in]           const DWORD *pFunction,
+    [out, retval]  IDirect3DPixelShader9 **ppShader
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateQuery" popover>
+HRESULT CreateQuery(
+    [in]           <button popovertarget="pop-D3DQUERYTYPE">D3DQUERYTYPE</button> Type,
+    [out, retval]  IDirect3DQuery9 **ppQuery
+);
+
+ret: D3D_OK, D3DERR_NOTAVAILABLE E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateRenderTarget" popover>
+HRESULT CreateRenderTarget(
+    [in]           UINT Width,
+    [in]           UINT Height,
+    [in]           <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button> Format,
+    [in]           <button popovertarget="pop-D3DMULTISAMPLE_TYPE">D3DMULTISAMPLE_TYPE</button> MultiSample,
+    [in]           DWORD MultisampleQuality,
+    [in]           BOOL Lockable,
+    [out, retval]  IDirect3DSurface9 **ppSurface,
+    [in]           HANDLE *pSharedHandle // NULL
+);
+
+ret: D3D_OK, D3DERR_NOTAVAILABLE, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateStateBlock" popover>
+HRESULT CreateStateBlock(
+    [in]           <button popovertarget="pop-D3DSTATEBLOCKTYPE">D3DSTATEBLOCKTYPE</button> Type,
+    [out, retval]  IDirect3DStateBlock9 **ppSB
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateTexture" popover>
+HRESULT CreateTexture(
+    [in]           UINT Width,
+    [in]           UINT Height,
+    [in]           UINT Levels,
+    [in]           DWORD <button popovertarget="pop-D3DUSAGE">Usage</button>,
+    [in]           <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button> Format,
+    [in]           <button popovertarget="pop-D3DPOOL">D3DPOOL</button> Pool,
+    [out, retval]  IDirect3DTexture9 **ppTexture,
+    [in]           HANDLE *pSharedHandle // NULL
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateVertexBuffer" popover>
+HRESULT CreateVertexBuffer(
+    [in]           UINT Length,
+    [in]           DWORD <button popovertarget="pop-D3DUSAGE">Usage</button>,
+    [in]           DWORD <button popovertarget="pop-FVF">FVF</button>,
+    [in]           <button popovertarget="pop-D3DPOOL">D3DPOOL</button> Pool,
+    [out, retval]  IDirect3DVertexBuffer9 **ppVertexBuffer,
+    [in]           HANDLE *pSharedHandle
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateVertexDeclaration" popover>
+HRESULT CreateVertexDeclaration(
+    [in]           const <button popovertarget="pop-D3DVERTEXELEMENT9">D3DVERTEXELEMENT9</button> *pVertexElements,
+    [out, retval]  IDirect3DVertexDeclaration9 **ppDecl
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateVertexShader" popover>
+HRESULT CreateVertexShader(
+  [in]           const DWORD *pFunction,
+  [out, retval]  IDirect3DVertexShader9 **ppShader
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::CreateVolumeTexture" popover>
+HRESULT CreateVolumeTexture(
+    [in]           UINT Width,
+    [in]           UINT Height,
+    [in]           UINT Depth,
+    [in]           UINT Levels,
+    [in]           DWORD <button popovertarget="pop-D3DUSAGE">Usage</button>,
+    [in]           <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button> Format,
+    [in]           <button popovertarget="pop-D3DPOOL">D3DPOOL</button> Pool,
+    [out, retval]  IDirect3DVolumeTexture9 **ppVolumeTexture,
+    [in]           HANDLE *pSharedHandle // NULL
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_OUTOFVIDEOMEMORY, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::DeletePatch" popover>
+HRESULT DeletePatch(
+    [in]  UINT Handle
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::DrawIndexedPrimitive" popover>
+HRESULT DrawIndexedPrimitive(
+    [in]  <button popovertarget="pop-D3DPRIMITIVETYPE">D3DPRIMITIVETYPE</button> Type,
+    [in]  INT BaseVertexIndex,
+    [in]  UINT MinIndex,
+    [in]  UINT NumVertices,
+    [in]  UINT StartIndex,
+    [in]  UINT PrimitiveCount
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::DrawIndexedPrimitiveUP" popover>
+HRESULT DrawIndexedPrimitiveUP(
+    [in]  <button popovertarget="pop-D3DPRIMITIVETYPE">D3DPRIMITIVETYPE</button> PrimitiveType,
+    [in]  UINT MinVertexIndex,
+    [in]  UINT NumVertices,
+    [in]  UINT PrimitiveCount,
+    [in]  const void *pIndexData,
+    [in]  <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button> IndexDataFormat,
+    [in]  const void *pVertexStreamZeroData,
+    [in]  UINT VertexStreamZeroStride
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::DrawPrimitive" popover>
+HRESULT DrawPrimitive(
+    [in]  <button popovertarget="pop-D3DPRIMITIVETYPE">D3DPRIMITIVETYPE</button> PrimitiveType,
+    [in]  UINT StartVertex,
+    [in]  UINT PrimitiveCount
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::DrawPrimitiveUP" popover>
+HRESULT DrawPrimitiveUP(
+    [in]  <button popovertarget="pop-D3DPRIMITIVETYPE">D3DPRIMITIVETYPE</button> PrimitiveType,
+    [in]  UINT PrimitiveCount,
+    [in]  const void *pVertexStreamZeroData,
+    [in]  UINT VertexStreamZeroStride
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::DrawRectPatch" popover>
+HRESULT DrawRectPatch(
+    [in]  UINT Handle,
+    [in]  const float *pNumSegs,
+    [in]  const <button popovertarget="pop-D3DRECTPATCH_INFO">D3DRECTPATCH_INFO</button> *pRectPatchInfo
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::DrawTriPatch" popover>
+HRESULT DrawTriPatch(
+  [in]  UINT Handle,
+  [in]  const float *pNumSegs,
+  [in]  const <button popovertarget="pop-D3DTRIPATCH_INFO">D3DTRIPATCH_INFO</button> *pTriPatchInfo
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DDevice9::AAA" popover>
+<button popovertarget="pop-AAA">D3DCUBEMAP_FACES</button>
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+
 <pre class="pop-fn" id="pop-IDirect3DIndexBuffer9::GetDesc" popover>
 HRESULT GetDesc(
     [out]  <button popovertarget="pop-D3DINDEXBUFFER_DESC">D3DINDEXBUFFER_DESC</button> *pDesc
@@ -892,18 +1258,570 @@ Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
 </pre>
 
 
-<pre class="pop-fn" id="pop-IDirect3DQuery9::GetFunction" popover>
+<pre class="pop-fn" id="pop-IDirect3DQuery9::GetData" popover>
 HRESULT GetData(
     [in, out]  void *pData,
     [in]       DWORD dwSize,
-    [in]       DWORD dwGetDataFlags <!-- BURADASIN UNUTMA -->
+    [in]       DWORD <button popovertarget="pop-dwGetDataFlags">dwGetDataFlags</button>
+);
+
+Başarılı olduysa S_OK döndürür.
+Başarılı olmadıysa bunlardan birini döndürür:
+    S_FALSE
+    D3DERR_DEVICELOST
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DQuery9::GetDataSize" popover>
+DWORD GetDataSize();
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DQuery9::GetDevice" popover>
+HRESULT GetDevice(
+    [out]  IDirect3DDevice9 **pDevice
 );
 
 Başarılı olduysa D3D_OK döndürür.
 Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
 </pre>
 
+<pre class="pop-fn" id="pop-IDirect3DQuery9::GetType" popover>
+D3DQUERYTYPE GetType();
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DQuery9::Issue" popover>
+HRESULT Issue(
+    [in]  DWORD <button popovertarget="pop-dwIssueFlags">dwIssueFlags</button>
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::FreePrivateData" popover>
+HRESULT FreePrivateData(
+    [in]  REFGUID refguid
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa bunlardan birini döndürür:
+    D3DERR_INVALIDCALL
+    D3DERR_NOTFOUND
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::GetDevice" popover>
+HRESULT GetDevice(
+    [out, retval]  IDirect3DDevice9 **ppDevice
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::GetPriority" popover>
+DWORD GetPriority();
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::GetPrivateData" popover>
+HRESULT GetPrivateData(
+    [in]       REFGUID refguid,
+    [in, out]  void *pData,
+    [in, out]  DWORD *pSizeOfData
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa bunlardan birini döndürür:
+    D3DERR_INVALIDCALL
+    D3DERR_MOREDATA
+    D3DERR_NOTFOUND
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::GetType" popover>
+D3DRESOURCETYPE GetType();
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::PreLoad" popover>
+void PreLoad();
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::SetPriority" popover>
+DWORD SetPriority(
+    [in]  DWORD PriorityNew
+);
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DResource9::SetPrivateData" popover>
+HRESULT SetPrivateData(
+    [in]  REFGUID refguid,
+    [in]  const void *pData,
+    [in]  DWORD SizeOfData,
+    [in]  DWORD <button popovertarget="pop-SetPrivateDataFlags">Flags</button>
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa bunlardan birini döndürür:
+    D3DERR_INVALIDCALL
+    E_OUTOFMEMORY
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DStateBlock9::Apply" popover>
+HRESULT Apply();
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DStateBlock9::Capture" popover>
+HRESULT Capture();
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DStateBlock9::GetDevice" popover>
+HRESULT GetDevice(
+    [in, out, retval]  IDirect3DDevice9 **ppDevice
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DSurface9::GetContainer" popover>
+HRESULT GetContainer(
+    [in]   REFIID riid,
+    [out]  void **ppContainer
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSurface9::GetDC" popover>
+HRESULT GetDC(
+    [out]  HDC *phdc
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSurface9::GetDesc" popover>
+HRESULT GetDesc(
+    [out]  <button popovertarget="pop-D3DSURFACE_DESC">D3DSURFACE_DESC</button> *pDesc
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSurface9::LockRect" popover>
+HRESULT LockRect(
+    [out]  <button popovertarget="pop-D3DLOCKED_RECT">D3DLOCKED_RECT</button> *pLockedRect,
+    [in]   const RECT *pRect,
+    [in]   DWORD Flags
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSurface9::ReleaseDC" popover>
+HRESULT ReleaseDC(
+    [in]  HDC hdc
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSurface9::UnlockRect" popover>
+HRESULT UnlockRect();
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DSwapChain9::GetBackBuffer" popover>
+HRESULT GetBackBuffer(
+    [in]           UINT BackBuffer,
+    [in]           <button popovertarget="pop-D3DBACKBUFFER_TYPE">D3DBACKBUFFER_TYPE</button> Type,
+    [out, retval]  IDirect3DSurface9 **ppBackBuffer
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSwapChain9::GetDevice" popover>
+HRESULT GetDevice(
+    [out, retval]  IDirect3DDevice9 **ppDevice
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSwapChain9::GetDisplayMode" popover>
+HRESULT GetDisplayMode(
+    [out]  <button popovertarget="pop-D3DDISPLAYMODE">D3DDISPLAYMODE</button> *pMode
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSwapChain9::GetFrontBufferData" popover>
+HRESULT GetFrontBufferData(
+    [in, out]  IDirect3DSurface9 *pDestSurface
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSwapChain9::GetPresentParameters" popover>
+HRESULT GetPresentParameters(
+    [out, retval]  <button popovertarget="pop-D3DPRESENT_PARAMETERS">D3DPRESENT_PARAMETERS</button> *pPresentationParameters
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSwapChain9::GetRasterStatus" popover>
+HRESULT GetRasterStatus(
+    [out]  <button popovertarget="pop-D3DRASTER_STATUS">D3DRASTER_STATUS</button> *pRasterStatus
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DSwapChain9::Present" popover>
+HRESULT Present(
+    [in]  const RECT *pSourceRect,
+    [in]  const RECT *pDestRect,
+    [in]  HWND hDestWindowOverride,
+    [in]  const <button popovertarget="pop-RGNDATA">RGNDATA</button> *pDirtyRegion,
+    [in]  DWORD <button popovertarget="pop-PresentdwFlags">dwFlags</button>
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa bunlardan birini döndürür.
+    D3DERR_DEVICELOST,
+    D3DERR_DRIVERINTERNALERROR,
+    D3DERR_INVALIDCALL,
+    D3DERR_OUTOFVIDEOMEMORY,
+    E_OUTOFMEMORY
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DTexture9::AddDirtyRect" popover>
+HRESULT AddDirtyRect(
+    [in]  const RECT *pDirtyRect
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DTexture9::GetLevelDesc" popover>
+HRESULT GetLevelDesc(
+    [in]   UINT Level,
+    [out]  D3DSURFACE_DESC *pDesc
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DTexture9::GetSurfaceLevel" popover>
+HRESULT GetSurfaceLevel(
+    [in]           UINT Level,
+    [out, retval]  IDirect3DSurface9 **ppSurfaceLevel
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DTexture9::LockRect" popover>
+HRESULT LockRect(
+    [in]   UINT Level,
+    [out]  <button popovertarget="pop-D3DLOCKED_RECT">D3DLOCKED_RECT</button> *pLockedRect,
+    [in]   const RECT *pRect,
+    [in]   DWORD <button popovertarget="pop-D3DLOCK">Flags</button>
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DTexture9::UnlockRect" popover>
+HRESULT UnlockRect(
+    [in]  UINT Level
+);
+
+Başarılı olduysa D3D_OK döndürür.
+Başarılı olmadıysa D3DERR_INVALIDCALL döndürür.
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DVertexBuffer9::GetDesc" popover>
+HRESULT GetDesc(
+    [out]  <button popovertarget="pop-D3DVERTEXBUFFER_DESC">D3DVERTEXBUFFER_DESC</button> *pDesc
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVertexBuffer9::Lock" popover>
+HRESULT Lock(
+    [in]   UINT OffsetToLock,
+    [in]   UINT SizeToLock,
+    [out]  VOID **ppbData,
+    [in]   DWORD <button popovertarget="pop-D3DLOCK">Flags</button>
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVertexBuffer9::Unlock" popover>
+HRESULT Unlock();
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DVertexDeclaration9::GetDeclaration" popover>
+HRESULT GetDeclaration(
+    [in, out]  <button popovertarget="pop-D3DVERTEXELEMENT9">D3DVERTEXELEMENT9</button> *pDecl,
+    [out]      UINT *pNumElements
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVertexDeclaration9::GetDevice" popover>
+HRESULT GetDevice(
+    [out, retval]  IDirect3DDevice9 **ppDevice
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DVertexShader9::GetDevice" popover>
+HRESULT GetDevice(
+    [out, retval]  IDirect3DDevice9 **ppDevice
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVertexShader9::GetFunction" popover>
+HRESULT GetFunction(
+    [in, out]  void *pData,
+    [in, out]  UINT *pSizeOfData
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::FreePrivateData" popover>
+HRESULT FreePrivateData(
+    [in]  REFGUID refguid
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_NOTFOUND
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::GetContainer" popover>
+HRESULT GetContainer(
+    [in]           REFIID riid,
+    [out, retval]  void **ppContainer
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::GetDesc" popover>
+HRESULT GetDesc(
+    [out]  <button popovertarget="pop-D3DVOLUME_DESC">D3DVOLUME_DESC</button> *pDesc
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::GetDevice" popover>
+HRESULT GetDevice(
+    [out, retval]  IDirect3DDevice9 **ppDevice
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::GetPrivateData" popover>
+HRESULT GetPrivateData(
+  [in]       REFGUID refguid,
+  [in, out]  void *pData,
+  [in, out]  DWORD *pSizeOfData
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, D3DERR_MOREDATA, D3DERR_NOTFOUND
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::LockBox" popover>
+HRESULT LockBox(
+    [out]  <button popovertarget="pop-D3DLOCKED_BOX">D3DLOCKED_BOX</button> *pLockedVolume,
+    [in]   const <button popovertarget="pop-D3DBOX">D3DBOX</button> *pBox,
+    [in]   DWORD <button popovertarget="pop-D3DLOCK">Flags</button>
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::SetPrivateData" popover>
+HRESULT SetPrivateData(
+    [in]  REFGUID refguid,
+    [in]  const void *pData,
+    [in]  DWORD SizeOfData,
+    [in]  DWORD Flags // 0 or D3DSPD_IUNKNOWN
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL, E_OUTOFMEMORY
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolume9::UnlockBox" popover>
+HRESULT UnlockBox();
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+
+<pre class="pop-fn" id="pop-IDirect3DVolumeTexture9::AddDirtyBox" popover>
+HRESULT AddDirtyBox(
+    [in]  const <button popovertarget="pop-D3DBOX">D3DBOX</button> *pDirtyBox
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolumeTexture9::GetLevelDesc" popover>
+HRESULT GetLevelDesc(
+    [in]   UINT Level,
+    [out]  <button popovertarget="pop-D3DVOLUME_DESC">D3DVOLUME_DESC</button> *pDesc
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolumeTexture9::GetVolumeLevel" popover>
+HRESULT GetVolumeLevel(
+    [in]           UINT Level,
+    [out, retval]  IDirect3DVolume9 **ppVolumeLevel
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolumeTexture9::LockBox" popover>
+HRESULT LockBox(
+    [in]   UINT Level,
+    [out]  <button popovertarget="pop-D3DLOCKED_BOX">D3DLOCKED_BOX</button> *pLockedVolume,
+    [in]   const <button popovertarget="pop-D3DBOX">D3DBOX</button> *pBox,
+    [in]   DWORD <button popovertarget="pop-D3DLOCK">Flags</button>
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
+<pre class="pop-fn" id="pop-IDirect3DVolumeTexture9::UnlockBox" popover>
+HRESULT UnlockBox(
+  [in]  UINT Level
+);
+
+ret: D3D_OK, D3DERR_INVALIDCALL
+</pre>
+
 <!-- Structs -->
+
+<pre class="pop-struct" id="pop-D3DRECTPATCH_INFO" popover>
+typedef struct D3DTRIPATCH_INFO {
+    UINT          StartVertexOffset;
+    UINT          NumVertices;
+    <button popovertarget="pop-D3DBASISTYPE">D3DBASISTYPE</button>  Basis;
+    <button popovertarget="pop-D3DDEGREETYPE">D3DDEGREETYPE</button> Degree;
+} D3DTRIPATCH_INFO, *LPD3DTRIPATCH_INFO;
+</pre>
+
+<pre class="pop-struct" id="pop-D3DRECTPATCH_INFO" popover>
+typedef struct D3DRECTPATCH_INFO {
+    UINT          StartVertexOffsetWidth;
+    UINT          StartVertexOffsetHeight;
+    UINT          Width;
+    UINT          Height;
+    UINT          Stride;
+    <button popovertarget="pop-D3DBASISTYPE">D3DBASISTYPE</button> Basis;
+    <button popovertarget="pop-D3DDEGREETYPE">D3DDEGREETYPE</button> Degree;
+} D3DRECTPATCH_INFO, *LPD3DRECTPATCH_INFO;
+</pre>
+
+<pre class="pop-struct" id="pop-D3DRECT" popover>
+typedef struct D3DRECT {
+    LONG x1;
+    LONG y1;
+    LONG x2;
+    LONG x2;
+} D3DRECT;
+</pre>
+
+<pre class="pop-struct" id="pop-D3DLOCKED_BOX" popover>
+typedef struct D3DLOCKED_BOX {
+    int  RowPitch;
+    int  SlicePitch;
+    void *pBits;
+} D3DLOCKED_BOX, *LPD3DLOCKED_BOX;
+</pre>
+
+<pre class="pop-struct" id="pop-D3DBOX" popover>
+typedef struct D3DBOX {
+    UINT Left;
+    UINT Top;
+    UINT Right;
+    UINT Bottom;
+    UINT Front;
+    UINT Back;
+} D3DBOX, *LPD3DBOX;
+</pre>
+
+<pre class="pop-struct" id="pop-D3DVOLUME_DESC" popover>
+typedef struct D3DVOLUME_DESC {
+    <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button>       Format;
+    <button popovertarget="pop-D3DRESOURCETYPE">D3DRESOURCETYPE</button> Type;
+    DWORD           Usage; // not used
+    <button popovertarget="pop-D3DPOOL">D3DPOOL</button>         Pool;
+    UINT            Width;
+    UINT            Height;
+    UINT            Depth;
+} D3DVOLUME_DESC, *LPD3DVOLUME_DESC;
+</pre>
+
+<pre class="pop-struct" id="pop-D3DVERTEXELEMENT9" popover>
+typedef struct D3DVERTEXELEMENT9 {
+    WORD Stream;
+    WORD Offset;
+    BYTE <button popovertarget="pop-D3DDECLTYPE">Type</button>; 
+    BYTE <button popovertarget="pop-D3DDECLMETHOD">Method</button>;
+    BYTE <button popovertarget="pop-D3DDECLUSAGE">Usage</button>;
+    BYTE UsageIndex;
+} D3DVERTEXELEMENT9, *LPD3DVERTEXELEMENT9;
+</pre>
 
 <pre class="pop-struct" id="pop-D3DPRESENT_PARAMETERS" popover>
 typedef struct D3DPRESENT_PARAMETERS {
@@ -1065,7 +1983,66 @@ typedef struct D3DINDEXBUFFER_DESC {
 } D3DINDEXBUFFER_DESC, *LPD3DINDEXBUFFER_DESC;
 </pre>
 
+<pre class="pop-struct" id="pop-RGNDATA" popover>
+typedef struct _RGNDATA {
+    <button popovertarget="pop-RGNDATAHEADER">RGNDATAHEADER</button> rdh;
+    char          Buffer[1];
+} RGNDATA, *PRGNDATA, *NPRGNDATA, *LPRGNDATA;
+</pre>
+
+<pre class="pop-struct" id="pop-RGNDATAHEADER" popover>
+typedef struct _RGNDATAHEADER {
+    DWORD dwSize;
+    DWORD <button popovertarget="pop-iType">iType</button>;
+    DWORD nCount;
+    DWORD nRgnSize;
+    RECT  rcBound;
+} RGNDATAHEADER, *PRGNDATAHEADER;
+</pre>
+
+<pre class="pop-struct" id="pop-D3DVERTEXBUFFER_DESC" popover>
+typedef struct D3DVERTEXBUFFER_DESC {
+    <button popovertarget="pop-D3DFORMAT">D3DFORMAT</button>       Format;
+    <button popovertarget="pop-D3DRESOURCETYPE">D3DRESOURCETYPE</button> Type;
+    DWORD           <button popovertarget="pop-D3DUSAGE">Usage</button>;
+    <button popovertarget="pop-D3DPOOL">D3DPOOL</button>         Pool;
+    UINT            Size;
+    DWORD           <button popovertarget="pop-FVF">FVF</button>; <!-- TODO -->
+} D3DVERTEXBUFFER_DESC, *LPD3DVERTEXBUFFER_DESC;
+</pre>
+
 <!-- Macros -->
+
+<pre class="pop-macro" id="pop-D3DCOLOR" popover>
+typedef DWORD D3DCOLOR;
+</pre>
+
+<pre class="pop-macro" id="pop-D3DCLEAR" popover>
+D3DCLEAR_STENCIL
+D3DCLEAR_TARGET
+D3DCLEAR_ZBUFFER
+</pre>
+
+<pre class="pop-macro" id="pop-FVF" popover>
+D3DFVF_DIFFUSE
+D3DFVF_NORMAL
+D3DFVF_PSIZE
+D3DFVF_SPECULAR
+D3DFVF_XYZ
+D3DFVF_XYZRHW
+D3DFVF_XYZB1 through D3DFVF_XYZB5
+D3DFVF_XYZW
+</pre>
+
+<pre class="pop-macro" id="pop-PresentdwFlags" popover>
+0
+D3DPRESENT_DONOTWAIT
+D3DPRESENT_LINEAR_CONTENT
+</pre>
+
+<pre class="pop-macro" id="pop-iType" popover>
+RDH_RECTANGLES
+</pre>
 
 <pre class="pop-macro" id="pop-SDKVersion" popover>
 D3D_SDK_VERSION
@@ -1124,14 +2101,18 @@ D3DADAPTER_DEFAULT
         <td>Lock</td>
         <td>IDirect3DIndexBuffer9</td>
         <td>IDirect3DCubeTexture9</td>
+        <td>IDirect3DTexture9</td>
+        <td>IDirect3DVertexBuffer9</td>
+        <td>IDirect3DVolume9</td>
+        <td>IDirect3DVolumeTexture9</td>
     </tr></thead>
     <tbody>
-    <tr><td>D3DLOCK_DISCARD        </td> <td>X</td><td>X</td> </tr>
-    <tr><td>D3DLOCK_DONOTWAIT      </td> <td> </td><td> </td> </tr>
-    <tr><td>D3DLOCK_NO_DIRTY_UPDATE</td> <td>X</td><td>X</td> </tr>
-    <tr><td>D3DLOCK_NOOVERWRITE    </td> <td>X</td><td>X</td> </tr>
-    <tr><td>D3DLOCK_NOSYSLOCK      </td> <td>X</td><td> </td> </tr>
-    <tr><td>D3DLOCK_READONLY       </td> <td>X</td><td>X</td> </tr>
+    <tr><td>D3DLOCK_DISCARD        </td> <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td>X</td> </tr>
+    <tr><td>D3DLOCK_DONOTWAIT      </td> <td> </td><td> </td><td> </td><td> </td><td> </td><td> </td> </tr>
+    <tr><td>D3DLOCK_NO_DIRTY_UPDATE</td> <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td>X</td> </tr>
+    <tr><td>D3DLOCK_NOOVERWRITE    </td> <td>X</td><td>X</td><td> </td><td>X</td><td> </td><td> </td> </tr>
+    <tr><td>D3DLOCK_NOSYSLOCK      </td> <td>X</td><td> </td><td>X</td><td>X</td><td>X</td><td>X</td> </tr>
+    <tr><td>D3DLOCK_READONLY       </td> <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td>X</td> </tr>
     </tbody>
 </table>
 </pre>
@@ -1153,12 +2134,138 @@ D3DCREATE_SCREENSAVER
 D3DCREATE_SOFTWARE_VERTEXPROCESSING
 </pre>
 
+<pre class="pop-macro" id="pop-dwGetDataFlags" popover>
+0 or D3DGETDATA_FLUSH
+</pre>
 
 <pre class="pop-macro" id="pop-WHQL" popover>
 0 or D3DENUM_WHQL_LEVEL
 </pre>
 
+<pre class="pop-macro" id="pop-dwIssueFlags" popover>
+#define D3DISSUE_END (1 << 0)
+#define D3DISSUE_BEGIN (1 << 1)
+</pre>
+
+<pre class="pop-macro" id="pop-SetPrivateDataFlags" popover>
+0 or D3DSPD_IUNKNOWN
+</pre>
+
 <!-- Enums -->
+
+<pre class="pop-enum" id="pop-D3DDEGREETYPE" popover>
+typedef enum D3DDEGREETYPE {
+    D3DDEGREE_LINEAR      = 1,
+    D3DDEGREE_QUADRATIC   = 2,
+    D3DDEGREE_CUBIC       = 3,
+    D3DDEGREE_QUINTIC     = 5,
+    D3DDEGREE_FORCE_DWORD = 0x7fffffff
+} D3DDEGREETYPE;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DBASISTYPE" popover>
+typedef enum D3DBASISTYPE { 
+    D3DBASIS_BEZIER       = 0,
+    D3DBASIS_BSPLINE      = 1,
+    D3DBASIS_CATMULL_ROM  = 2,
+    D3DBASIS_FORCE_DWORD  = 0x7fffffff
+} D3DBASISTYPE, *LPD3DBASISTYPE;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DPRIMITIVETYPE" popover>
+typedef enum D3DPRIMITIVETYPE { 
+    D3DPT_POINTLIST      = 1,
+    D3DPT_LINELIST       = 2,
+    D3DPT_LINESTRIP      = 3,
+    D3DPT_TRIANGLELIST   = 4,
+    D3DPT_TRIANGLESTRIP  = 5,
+    D3DPT_TRIANGLEFAN    = 6,
+    D3DPT_FORCE_DWORD    = 0x7fffffff
+} D3DPRIMITIVETYPE, *LPD3DPRIMITIVETYPE;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DSTATEBLOCKTYPE" popover>
+typedef enum _D3DSTATEBLOCKTYPE { 
+    D3DSBT_ALL          = 1,
+    D3DSBT_PIXELSTATE   = 2,
+    D3DSBT_VERTEXSTATE  = 3,
+    D3DSBT_FORCE_DWORD  = 0x7fffffff
+} D3DSTATEBLOCKTYPE;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DQUERYTYPE" popover>
+typedef enum D3DQUERYTYPE { 
+    D3DQUERYTYPE_VCACHE             = 4,
+    D3DQUERYTYPE_RESOURCEMANAGER    = 5,
+    D3DQUERYTYPE_VERTEXSTATS        = 6,
+    D3DQUERYTYPE_EVENT              = 8,
+    D3DQUERYTYPE_OCCLUSION          = 9,
+    D3DQUERYTYPE_TIMESTAMP          = 10,
+    D3DQUERYTYPE_TIMESTAMPDISJOINT  = 11,
+    D3DQUERYTYPE_TIMESTAMPFREQ      = 12,
+    D3DQUERYTYPE_PIPELINETIMINGS    = 13,
+    D3DQUERYTYPE_INTERFACETIMINGS   = 14,
+    D3DQUERYTYPE_VERTEXTIMINGS      = 15,
+    D3DQUERYTYPE_PIXELTIMINGS       = 16,
+    D3DQUERYTYPE_BANDWIDTHTIMINGS   = 17,
+    D3DQUERYTYPE_CACHEUTILIZATION   = 18,
+    D3DQUERYTYPE_MEMORYPRESSURE     = 19
+} D3DQUERYTYPE, *LPD3DQUERYTYPE;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DDECLUSAGE" popover>
+typedef enum D3DDECLUSAGE { 
+    D3DDECLUSAGE_POSITION      = 0,
+    D3DDECLUSAGE_BLENDWEIGHT   = 1,
+    D3DDECLUSAGE_BLENDINDICES  = 2,
+    D3DDECLUSAGE_NORMAL        = 3,
+    D3DDECLUSAGE_PSIZE         = 4,
+    D3DDECLUSAGE_TEXCOORD      = 5,
+    D3DDECLUSAGE_TANGENT       = 6,
+    D3DDECLUSAGE_BINORMAL      = 7,
+    D3DDECLUSAGE_TESSFACTOR    = 8,
+    D3DDECLUSAGE_POSITIONT     = 9,
+    D3DDECLUSAGE_COLOR         = 10,
+    D3DDECLUSAGE_FOG           = 11,
+    D3DDECLUSAGE_DEPTH         = 12,
+    D3DDECLUSAGE_SAMPLE        = 13
+} D3DDECLUSAGE, *LPD3DDECLUSAGE;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DDECLMETHOD" popover>
+typedef enum D3DDECLMETHOD { 
+    D3DDECLMETHOD_DEFAULT           = 0,
+    D3DDECLMETHOD_PARTIALU          = 1,
+    D3DDECLMETHOD_PARTIALV          = 2,
+    D3DDECLMETHOD_CROSSUV           = 3,
+    D3DDECLMETHOD_UV                = 4,
+    D3DDECLMETHOD_LOOKUP            = 5,
+    D3DDECLMETHOD_LOOKUPPRESAMPLED  = 6
+} D3DDECLMETHOD, *LPD3DDECLMETHOD;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DDECLTYPE" popover>
+typedef enum D3DDECLTYPE { 
+    D3DDECLTYPE_FLOAT1     = 0,
+    D3DDECLTYPE_FLOAT2     = 1,
+    D3DDECLTYPE_FLOAT3     = 2,
+    D3DDECLTYPE_FLOAT4     = 3,
+    D3DDECLTYPE_D3DCOLOR   = 4,
+    D3DDECLTYPE_UBYTE4     = 5,
+    D3DDECLTYPE_SHORT2     = 6,
+    D3DDECLTYPE_SHORT4     = 7,
+    D3DDECLTYPE_UBYTE4N    = 8,
+    D3DDECLTYPE_SHORT2N    = 9,
+    D3DDECLTYPE_SHORT4N    = 10,
+    D3DDECLTYPE_USHORT2N   = 11,
+    D3DDECLTYPE_USHORT4N   = 12,
+    D3DDECLTYPE_UDEC3      = 13,
+    D3DDECLTYPE_DEC3N      = 14,
+    D3DDECLTYPE_FLOAT16_2  = 15,
+    D3DDECLTYPE_FLOAT16_4  = 16,
+    D3DDECLTYPE_UNUSED     = 17
+} D3DDECLTYPE, *LPD3DDECLTYPE;
+</pre>
 
 <pre class="pop-enum" id="pop-D3DDEVTYPE" popover>
 typedef enum D3DDEVTYPE { 
@@ -1343,6 +2450,15 @@ typedef enum D3DPOOL {
     D3DPOOL_SCRATCH      = 3,
     D3DPOOL_FORCE_DWORD  = 0x7fffffff
 } D3DPOOL, *LPD3DPOOL;
+</pre>
+
+<pre class="pop-enum" id="pop-D3DBACKBUFFER_TYPE" popover>
+typedef enum D3DBACKBUFFER_TYPE { 
+    D3DBACKBUFFER_TYPE_MONO         = 0,
+    D3DBACKBUFFER_TYPE_LEFT         = 1,
+    D3DBACKBUFFER_TYPE_RIGHT        = 2,
+    D3DBACKBUFFER_TYPE_FORCE_DWORD  = 0x7fffffff
+} D3DBACKBUFFER_TYPE, *LPD3DBACKBUFFER_TYPE;
 </pre>
 
 </code>
