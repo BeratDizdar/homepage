@@ -24,6 +24,8 @@ insanların hatayı düştüğüne inanıyorum zira OOP kullananlar "yeniden kul
 düşüncesinde karmaşık yapılar inşa edip aslında hiç kullanmıyorlar. Bu da 
 geliştiricileri asıl karmaşıklıktan ziyade yapay bir karmaşıklık ile uğraşmaya 
 itiyor. OOP'de "sonradan kullanırız" diye yazılan yapıların %80'i çöpe gidiyor.
+Bu konuda elle tutulur bir kaynak görmek istiyorsanız github'a girip ölü projeler 
+mezarlığını kontrol edebilirsiniz.
 
 "Nesne yönelimli dillerle ilgili temel sorun, bütün bir gizli ortamı 
 beraberlerinde getirmeleridir. Siz sadece bir muz istersiniz, ama elinize 
@@ -43,9 +45,12 @@ yönetmenin yolları vardır.
 Yani olay bir gökdeleni sıfırdan inşa etmek değil daha ziyade gökdelene vuracak 
 olan rüzgar problemini çözebilmek yani kısaca problem kodun yazımı değil 
 problemin kendisi diyor.
-Brooks'a bu noktada katılamayacağım çünkü bana kalırsa essential complexity'nin 
-çözüm yolları vardır. Şuan bilmiyor olsam bile inanıyorum. Çözüm yolları 
-önerebilirim en azından.
+Brooks'a bu noktada katılıp katılmayacağım konusunda kararsızım. Matematiksel 
+olarak güçlü bir noktada fakat ben bunun çözümüne inanmak istiyorum. Çözüm yolları 
+önerebilirim en azından. En azından bir beyin egzersizi olması açısından. Fakat 
+emin olduğum bir şey varsa da bu, varacağımız nokta Brooks'un haklı olacağı 
+yönünde olacak olmasıdır. Ne yaparsak yapalım olay hep yazılımın nitelikleri 
+hakkında söylediğine gelecek.
 
 # Hadi Hep Beraber Essential Complexity'ye Yaklaşalım
 Hadi assembly ile OpenGL yazmayı düşünelim. Kulağa uzun iş gibi geliyor değil mi?
@@ -98,18 +103,71 @@ Elimizde kalanlar:
 - Registers
 Bir anda rahatladık değil mi? Olay özünde bu kadar sade. Eğer "if else ile bunu 
 nasıl yazarım" diye düşünürseniz tuzağa düşerseniz çünkü ortada C'de yok fakat 
-siz C gibi düşünmeye çalışıyorsun demektir. Basit daha basit düşünün. Bu konuda 
-C gibi dillere alternatif bu diller düşünme şeklinizi değiştirebilir.
-- APL
-- Forth
-- LISP1
-Fakat yanlış anlaşılmasın çözüm bunlarda da değildir. Çünkü bunlarda kendilerince 
-bir karmaşıklık getirirler. Bizim bilgisayarı ve programı bir üretim hattı gibi 
-düşünmemiz lazım. Hangi noktada hangi ürün girecek. Bilgisayar buna karşılık 
-hangi bayrakları kaldıracak. Bunu en verimli nasıl kullanabiliriz. Bir nevi 
-Factorio oynamak gibi yani. 
+siz C gibi düşünmeye çalışıyorsun demektir. Basit daha basit düşünün. Sizden 
+neden basit düşünmenizi istiyorum? Sebebi çok açık, sonradan oluşturduğumuz 
+problemleri aradan çıkarıp öze odaklanmak için.
 
-Bu bağlamda x86 tabanlı, modern dillerin düşünce yapısında bir dil 
-geliştirmektense, x86'nın komut listesinin gücünü insanın anlayabileceği en iyi 
-verimde yazdıracak bir yapıya sokmak. Peki neden bunu yapmaya yönelmiyoruz ki?
+Bizim bilgisayarı ve programı bir üretim hattı gibi düşünmemiz lazım. Hangi 
+noktada hangi ürün girecek. Bilgisayar buna karşılık hangi bayrakları kaldıracak. 
+Bunu en verimli nasıl kullanabiliriz. Bir nevi Factorio oynamak gibi yani. 
+Tabi Factorio oynama örneği ruh haliyle ilgili bir durum fakat bence güzel bir örnek.
+
+Bu bağlamda x86_64 tabanlı, modern dillerin düşünce yapısında bir dil 
+geliştirmektense, x86_64'ün komut listesinin gücünü insanın anlayabileceği en iyi 
+verimde yazdıracak bir yapıya sokmak. Peki neden bunu yapmaya yönelmiyoruz ki? 
+Bu konuda kendi aklımdaki ideal programlama dili ile ilgili bazı örnekleri 
+yazmak istiyorum. Tabi bu benim fikrim olduğu için katılmamakta özgürsünüz. Bu 
+durumda sizden de kendi örnekleriniz ile gelmenizi ve bu işe ortak olmanızı 
+istiyorum. 
+Ha bu arada bu da kesin bir çözüm değil çünkü yine yazılımın invisibility 
+niteliğine gelmiş olduk ve Brooks'un neden haklı olduğunu gözlerimiz ile gördük.
+
+# Kendi İdealim
+Üretim bandı gibi derken şaka yapmıyordum. Gerçekten dilin kendisi -> veya benzeri 
+karakterler ile yazılabilir. Aklımdaki soru işaretlerinden biri de acaba her 
+banttan sonra orada kaç cycle çalıştığını yazsa mı acaba? Bunun gerçek x86_64 
+donanımıyla bire bir örtüşmesi zaten mümkün değil (out-of-order execution, cache 
+miss gibi şeyler yüzünden), o yüzden muhtemelen kendi idealize edilmiş sabit 
+maliyetlere sahip bir soyut makine tanımlamam gerekecek — Knuth'un MIX'i gibi. 
+Bu, gerçek donanım simülasyonu değil, öğretici bir sezgi katmanı olur.
+
+Öte yandan bu bandı fonksiyonel dillerdeki gibi düşünmeyin. En başta ne 
+gönderiyorsam işlem hattında ne varsa onun ile işleniyor. Zincir bittikten sonra 
+da kaynak register geçerliliğini korur; -> yeni bir "temp" yaratmaz ama kaynağı 
+da silmez, bir kopya işlemi gibi davranır.
+
+    19 -> RAX                 ; mov rax, 19
+    [19] -> RAX               ; mov rax, [19]
+
+    RAX -> ADD(10) -> RBX     ; add rax, 10
+                              ; mov rbx, rax
+
+    RAX -> EXCHANGE(RBX)      ; xchg rax, rbx
+    BYTESWAP(RAX)             ; bswap rax
+
+Not: EXCHANGE simetrik bir işlemdir. RAX -> EXCHANGE(RBX) yazımındaki -> burada 
+bir yön değil, sadece parametre iletimini gösterir — gerçekte iki taraf da eş 
+zamanlı değişir.
+
+Zıplama yapmak için ya direkt zıplama bölgesinin adı yazılmalı ya da hatta 
+bağlanmalıdır. Hatta bağlanan zıplama bölgelerine özel optimizasyonlar yapılmalı. 
+Flag kontrolü için ?FLAG ve ?!FLAG ayrımı kullanıyorum: ?FLAG flag set ise, 
+?!FLAG flag clear ise zıplar.
+
+    19 -> RAX -> COMPARE(RBX) -> ?!ZF -> jmp1   ; mov rax, 19
+                                                ; cmp rax, rbx
+                                                ; jnz jmp1
+
+@jmp1
+    ...
+
+Byte reserve gibi yapılar için aklımda böyle bir şey var, henüz emin değilim:
+
+    .qword counter 1
+    .byte buffer 64
+
+Bu notasyon tek yönlü, tek operandlı işlemlerde (ADD, BYTESWAP gibi) net; flag 
+ve simetrik işlemlerde (xchg gibi) henüz olgunlaşmadı, üzerinde çalışıyorum.
+
+🚧 devamı gelecek
 </pre>
