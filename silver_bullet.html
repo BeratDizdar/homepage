@@ -1,0 +1,115 @@
+<pre>
+# Yazılımın Nitelikleri - Fred Brooks
+- Complexity
+- Conformity
+- Changeability
+- Invisibility
+
+# Okuduğumdan Anladığım Kendi Yorumum
+Araçlarımız (diller, derleyiciler, kütüphaneler) ne kadar gelişirse gelişsin, 
+bir yazılım projesindeki asıl zamanı kodu ekrana yazarken accidental (ilintisel) 
+değil, neyi yazacağımızı ve o sistemin mantığını nasıl kurgulayacağımızı düşünürken 
+essential (özsel) harcıyoruz
+
+# Fred Brooks'un Çözüm Önerileri
+- Buy vs Build
+- Rapid Prototyping
+- Incremental Development
+- Great Designers
+
+# Çözüm Önerilerine Karşı Düşüncem
+Ben OOP çevresinin bu konuyu yanlış anladığını düşünüyorum. Brooks'un 
+söyledikleri çok doğru olmasına karşın yeterince açık olmamasından kaynaklı 
+insanların hatayı düştüğüne inanıyorum zira OOP kullananlar "yeniden kullanırız" 
+düşüncesinde karmaşık yapılar inşa edip aslında hiç kullanmıyorlar. Bu da 
+geliştiricileri asıl karmaşıklıktan ziyade yapay bir karmaşıklık ile uğraşmaya 
+itiyor. OOP'de "sonradan kullanırız" diye yazılan yapıların %80'i çöpe gidiyor.
+
+"Nesne yönelimli dillerle ilgili temel sorun, bütün bir gizli ortamı 
+beraberlerinde getirmeleridir. Siz sadece bir muz istersiniz, ama elinize 
+muzu tutan bir goril ve bütün bir orman geçer."
+
+# Essential Complexity'nin Çözüm Nedir, Ne Değildir?
+C, Java, Odin gibi diller yazımsal olarak güzel olsalar bile özünde essential 
+complexity için çözüme dair en ufak bir yardımda bile bulunmamışlardır. 
+Register soyutlaması kontrol akış kolaylıkları tamamen accidental complexity'yi
+çözmek içindir. Yani haliyle "Gümüş Kurşun" değillerdir.
+
+Brooks'a göre essential complexity'nin bir çözüm yolu yoktur. Yine de onu 
+yönetmenin yolları vardır. 
+- Sınırlarını net çizdiğimiz izole mimariler.
+- Alan odaklı soyutlamalar.
+- Matematiksel modeller ve durum makineleri
+Yani olay bir gökdeleni sıfırdan inşa etmek değil daha ziyade gökdelene vuracak 
+olan rüzgar problemini çözebilmek yani kısaca problem kodun yazımı değil 
+problemin kendisi diyor.
+Brooks'a bu noktada katılamayacağım çünkü bana kalırsa essential complexity'nin 
+çözüm yolları vardır. Şuan bilmiyor olsam bile inanıyorum. Çözüm yolları 
+önerebilirim en azından.
+
+# Hadi Hep Beraber Essential Complexity'ye Yaklaşalım
+Hadi assembly ile OpenGL yazmayı düşünelim. Kulağa uzun iş gibi geliyor değil mi?
+O zaman hadi high level bir assembly veya dil kullanalım. Bu sayede işimiz biraz 
+daha kolaylaştı değil mi? Peki bu essential complexity için bir çözüm müydü?
+HAYIR. Bu sadece accidental complexity için çözüm oldu. Çünkü diyelimki 
+kullanıcı pointerlar ile uğraşmıyor artık. Yani özsel karmaşıklığı yok etmedik 
+ama insanların daha rahat anlayabileceği bir düzleme taşıdık. Fakat bu sefer 
+sırada ışık formülleri shader kodları var. Bu işin pratikte bir sonu yoktur. 
+
+O zaman yaklaşım şeklimizi değiştirelim ve gökdelen örneğini hatırlayalım.
+Gökdelenin yapılışını değiştirmeden rüzgar problemini çözmeliyiz. O zaman tekrar
+OpenGL örneğine gelecek olursak önce rüzgarın ne olduğunu bulmamız gerekiyor.
+Hadi bir benzetme yapalım o zaman:
+- Vinçler ve iş makineleri: OpenGL API, C, bellek yönetimi ve pointerlar.
+- Gökdelen: Yazdığımız program.
+- Rüzgar: Donanımın kendi sınırları, 3D grafiğin matematiği.
+Benim aklımda böyle bir şema analoji oluştu bu konuda. Bu bağlamda odaklanmamız 
+gereken şey işin matematiği ve donanımsal yükü oldu.
+
+Fakat şöyle bir gerçeğimiz var ki rüzgarın varlığını silemeyeceğimiz gibi 
+donanım sınırlarını da bir anda kaldıramayız. Ama yaptığımız gökdelenin rüzgara 
+karşı durmasından ziyade ona uyumlu hareket etmesini sağlayabiliriz. Bu örnekte 
+essential complexity için aklıma gelen çözümler şunlar:
+- Matematiksel ifadeler edimler kolaylaştırılmalı. Yani birinci sınıf olmalı.
+- Shaderlar programdan bağımsız değil programın eklemeli bir parçası olmalı.
+- Donanımsal sınırlar konusunda mekanik olarak yapabileceğim kesin bir çözüm yok.
+Tabi bu bağlamda OpenGL'in bir durum makinesi oluşu bizim inşa problemimiz mi 
+yoksa rüzgar problemimiz mi diye bir düşünceye kapılmıştım. Fakat bu durum API'nin 
+eski zamanlardan kalan bir kalıntısı olduğu için accidental complexity sınıfına 
+girer. Aslında bu noktada Brooks'un çözüm önerilerinin doğru uygulanmasının bu 
+problemi en başında yaratmayacağını fark edebiliyorum.
+
+# Karmaşıklık Problemlerinin Çözümleri Üzerine
+Bu OpenGL örneğinde konuştuğumuz problemler konusunda aklınıza çözüm olarak ne 
+geliyor? C++ ile operator overload yapmak mı? COM benzeri bir mimari ile C 
+kullanmak mı? Yoksa yeni favorilerinizden olan Rust, Odin gibi diller kullanmak 
+mı? Yeni bir dil geliştirmek mi? Malesef bütün bunlar ortak bir atanın torunlarından 
+başka bir şey değil.
+
+Benim bu konuya yaklaşma isteğim daha farklı bir yoldan gitmek olacak. bunun için 
+yaklaşık 50 yıl geriye gitmemiz gerekecek. Gerekecek ki aklımızdaki modern yazılım 
+terimleri silinsin ve ilk prensiplere dönelim. Mesela aklımızdan silmemiz gerekenler 
+- Function, method, subroutine, procedure, behaivor
+- Variables, constants, scopes, classes, flows
+Elimizde kalanlar:
+- Memory cell
+- Clock time
+- Flags
+- Registers
+Bir anda rahatladık değil mi? Olay özünde bu kadar sade. Eğer "if else ile bunu 
+nasıl yazarım" diye düşünürseniz tuzağa düşerseniz çünkü ortada C'de yok fakat 
+siz C gibi düşünmeye çalışıyorsun demektir. Basit daha basit düşünün. Bu konuda 
+C gibi dillere alternatif bu diller düşünme şeklinizi değiştirebilir.
+- APL
+- Forth
+- LISP1
+Fakat yanlış anlaşılmasın çözüm bunlarda da değildir. Çünkü bunlarda kendilerince 
+bir karmaşıklık getirirler. Bizim bilgisayarı ve programı bir üretim hattı gibi 
+düşünmemiz lazım. Hangi noktada hangi ürün girecek. Bilgisayar buna karşılık 
+hangi bayrakları kaldıracak. Bunu en verimli nasıl kullanabiliriz. Bir nevi 
+Factorio oynamak gibi yani. 
+
+Bu bağlamda x86 tabanlı, modern dillerin düşünce yapısında bir dil 
+geliştirmektense, x86'nın komut listesinin gücünü insanın anlayabileceği en iyi 
+verimde yazdıracak bir yapıya sokmak. Peki neden bunu yapmaya yönelmiyoruz ki?
+</pre>
