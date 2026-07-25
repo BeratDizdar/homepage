@@ -5,7 +5,7 @@ yazacağım.
 - Kullandığım derleyici: x86_64 gcc 16.1
 - Olabildiğince farklı optimizasyon seviyelerinde de göstereceğim.
 
-# Compound Literal ile Dizi İşaretçisi #########################################
+<b># Compound Literal ile Dizi İşaretçisi #########################################</b>
 Pointer yardımıyla tek satırda dizi içeriğini değiştirebilirsiniz. Pointer sizin 
 için sadece dizileri işaret eden bir araçtır burada.
     int* a;
@@ -20,7 +20,7 @@ için sadece dizileri işaret eden bir araçtır burada.
                                 // leaq -32(%rbp), %rax
                                 // movq %rax, -8(%rbp)
 
-# Defect Report #76 ############################################################
+<b># Defect Report #76 ############################################################</b>
 Dizinin bir ötesini işaret eden pointer geçerlidir.
 1993'te bu bile net değildi, komite kendi de emin değildi. C99 ile resmen çözüldü.
     int a[10];
@@ -31,7 +31,7 @@ Dizinin bir ötesini işaret eden pointer geçerlidir.
     p = &*n;            // movq -16(%rbp), %rax
                         // movq %rax, -8(%rbp)
 
-# Bütün Fonksiyonları Tutabilen Cast ###########################################
+<b># Bütün Fonksiyonları Tutabilen Cast ###########################################</b>
 Adı üstünde void* ile tanımlanan bir işaretçi doğru cast ile bütün fonksiyonlar 
 için doğru bir tutucu olabilir. Burada püf nokta, bilmediğin bütün tipler için 
 void* kullanmak. Zira istenen senaryoya uygun işaretçi tipine çevrilebiliyor. 
@@ -63,7 +63,7 @@ void* ile int return type olarak aynı registere gidiyor. Burada şunu anlamanı
 istiyorum. Fonksiyonların bu dönüş tipleri aslında bizim uydurduğumuz şeyler. 
 Bunu ne kadar iyi anlarsak o kadar makineyi anlarız.
 
-# Değiştirilebilir Fonksiyon Structları ########################################
+<b># Değiştirilebilir Fonksiyon Structları ########################################</b>
 Bir struct yaratıp sonrasında fonksiyon üzerinden özelliklerini okumak bildiğimiz 
 bir pratiktir. fakat bunu değiştirebildiğimizi biliyor muydunuz?
                                     // i.0:
