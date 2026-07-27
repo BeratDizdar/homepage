@@ -1,9 +1,8 @@
 <pre>
-# C yazmak çok eğlenceli
-Anlatmaya nereden başlayacağım bilmiyorum o yüzden aklıma geldikçe peşpeşe 
-yazacağım.
-- Kullandığım derleyici: x86_64 gcc 16.1
-- Olabildiğince farklı optimizasyon seviyelerinde de göstereceğim.
+<b># C yazmak çok eğlenceli #######################################################</b>
+- <b>Başlangıç tarihi:</b> 24.07.2026
+- <b>Kullandığım derleyici:</b> x86_64 gcc 16.1
+- <b>Son Güncelleme:</b> 27.07.2026
 
 <b># Compound Literal ile Dizi İşaretçisi #########################################</b>
 Pointer yardımıyla tek satırda dizi içeriğini değiştirebilirsiniz. Pointer sizin 
@@ -44,15 +43,15 @@ anlayabilirsiniz.
                                                        //   .string "World"
                                                        // .LC1:
                                                        //   .string "Hello, %s!\n"
-    // -O0 optimizasyon ile
+                                               // -O0 optimizasyon ile
     void* f = printf;                                  // movq $printf, -8(%rbp)
     ((void*(*)(void*,...))f)("Hello, %s!\n","World");  // movq -8(%rbp), %rdx
                                                        // movl $.LC0, %esi
                                                        // movl $.LC1, %edi
                                                        // movl $0, %eax
                                                        // call *%rdx
-    // -O3 optimizasyon ile
-    void* f = printf;
+                                               // -O3 optimizasyon ile
+    void* f = printf;                                  //
     ((void*(*)(void*,...))f)("Hello, %s!\n","World");  // movl $.LC0, %esi
                                                        // movl $.LC1, %edi
                                                        // xorl %eax, %eax
@@ -66,35 +65,69 @@ Bunu ne kadar iyi anlarsak o kadar makineyi anlarız.
 <b># Değiştirilebilir Fonksiyon Structları ########################################</b>
 Bir struct yaratıp sonrasında fonksiyon üzerinden özelliklerini okumak bildiğimiz 
 bir pratiktir. fakat bunu değiştirebildiğimizi biliyor muydunuz?
-                                    // i.0:
-                                    //   .long 5
-                                    //   .long 0
-                                    //   .long 8
-                                    //   .long 22
+                                                    // i.0:
+                                                    //   .long 5
+                                                    //   .long 0
+                                                    //   .long 8
+                                                    //   .long 22
     typedef struct INT {int x, y, z, w;} INT;
     INT* _INT() { 
         static INT i = {5, 0, 8, 22};
-        return &i;                  // movl $i.0, %eax
+        return &i;                                  // movl $i.0, %eax
         //C23 standartı bu 
         //tarz bir yazımı destekliyor
         //return &(static INT){5, 0, 8, 22};
     }
 
     int main() {
-        // -O0 optimizasyon ile
-        _INT()->y = 17;             // call _INT
-                                    // movl $17, 4(%rax)
-        int a = _INT()->y + 2;      // call _INT
-                                    // movl 4(%rax), %eax
-                                    // addl $2, %eax
-                                    // movl %eax, -4(%rbp)
+                                            // -O0 optimizasyon ile
+        _INT()->y = 17;                             // call _INT
+                                                    // movl $17, 4(%rax)
+        int a = _INT()->y + 2;                      // call _INT
+                                                    // movl 4(%rax), %eax
+                                                    // addl $2, %eax
+                                                    // movl %eax, -4(%rbp)
 
-        // -O3 optimizasyon ile
-        _INT()->y = 17;             // movl $17, i.0+4(%rip)
+                                            // -O3 optimizasyon ile
+        _INT()->y = 17;                             // movl $17, i.0+4(%rip)
         int a = _INT()->y + 2;
 
         return 0;
     }
 _INT fonksiyonunu static yapmadığımız için derleyici bunu farklı dosyalarda 
 çağrılabileceğini varsayıp -O3'te bile tutmayı seçiyor.
+
+<b># Method Chaining ##############################################################</b>
+Nesne odaklı dilleri kullanıyorsanız bu terimi duymuş olabilirsiniz. Bunu C ile 
+yapmak oldukça basittir.
+
+    typedef struct INT {
+        int x;
+        struct INT* (*set)(struct INT*, int);
+        int         (*get)(struct INT*);
+        struct INT* (*add)(struct INT*, int);
+    } INT;
+    INT* __INT_set(INT* s, int a) {s->x = a; return s;}
+    int  __INT_get(INT* s)        {return s->x;}
+    INT* __INT_add(INT* s, int a) {s->x += a; return s;}
+    INT  __INT_new() {return (INT){0, __INT_set, __INT_get, __INT_add};}
+
+    int main() {
+        INT i = __INT_new();
+        
+        int t = i.set(&i, 5)->add(&i, 3)->get(&i);
+        
+        printf("%d\n", t);
+        return 0;
+    }
+
+C++ kullanırken de aslında mantık tamamen aynı çalışıyor fakat onun Class yapısı
+bunu bizden gizliyor. Yani aslında C++'ta da aslında ilk argüman olarak kendini 
+gönderiyor. x86 sistemlerde buna __thiscall deniyor. Farklı ABI'larda farklı 
+registerlar üzerinden kendilerini gönderiyorlar.
+    this pointeri:
+        - __thiscall (Microsoft, x86, 32-bit):     ECX
+        - Microsoft x64 çağırma kuralı (x86_64):   RCX
+        - System V i386 ABI (32-bit):              stack
+        - System V AMD64 ABI (x86_64):             RDI
 </pre>
