@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <!-- Mobil cihazlarda düzgün ölçeklenmesi için gereken viewport ayarı -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sınırlı Genişlik ve Ortalı İçerik</title>
+    
+    <style>
+        /* Genel sayfa sıfırlamaları ve arka plan */
+        body {
+            font-family: system-ui, -apple-system, sans-serif; /* Modern ve okunaklı fontlar */
+            background-color: #f4f4f9;
+            color: #333333;
+            margin: 0;
+            padding: 20px; /* Mobilde ekran kenarlarına yapışmasını engeller */
+        }
+
+        /* İçeriği saran ana kutu */
+        .container {
+            max-width: 650px; /* Genişliği sınırlandıran temel kural */
+            margin: 40px auto; /* Yukarı/aşağı boşluk bırakır, sağ/sol otomatik (ortalar) */
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center; /* İçindeki tüm metinleri ortalar */
+        }
+
+        /* Başlık ve paragraf düzenlemeleri */
+        h1 {
+            margin-top: 0;
+            color: #111111;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hoş Geldiniz</h1>
+        <p>
+            Aslında gelmediniz.
+        </p>
+    </div>
+
+</body>
+</html>

@@ -1,34 +1,41 @@
+<link rel="stylesheet" href="style.css">
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffd1
+    }
+</style>
 <pre>
 <b># C yazmak çok eğlenceli #######################################################</b>
 - <b>Başlangıç tarihi:</b> 24.07.2026
 - <b>Kullandığım derleyici:</b> x86_64 gcc 16.1
-- <b>Son Güncelleme:</b> 27.07.2026
+- <b>Son Güncelleme:</b> 30.07.2026
 
 <b># Compound Literal ile Dizi İşaretçisi #########################################</b>
 Pointer yardımıyla tek satırda dizi içeriğini değiştirebilirsiniz. Pointer sizin 
 için sadece dizileri işaret eden bir araçtır burada.
     int* a;
-    a = (int[]){142, 23};       // movl $142, -16(%rbp) 
-                                // movl $23, -12(%rbp)
-                                // leaq -16(%rbp), %rax
-                                // movq %rax, -8(%rbp)
-    a = (int[]){1, 2, 4, 5};    // movl $1, -32(%rbp)
-                                // movl $2, -28(%rbp)
-                                // movl $4, -24(%rbp)
-                                // movl $5, -20(%rbp)
-                                // leaq -32(%rbp), %rax
-                                // movq %rax, -8(%rbp)
+    a = (int[]){142, 23};       <span>// movl $142, -16(%rbp) </span>
+                                <span>// movl $23, -12(%rbp)</span>
+                                <span>// leaq -16(%rbp), %rax</span>
+                                <span>// movq %rax, -8(%rbp)</span>
+    a = (int[]){1, 2, 4, 5};    <span>// movl $1, -32(%rbp)</span>
+                                <span>// movl $2, -28(%rbp)</span>
+                                <span>// movl $4, -24(%rbp)</span>
+                                <span>// movl $5, -20(%rbp)</span>
+                                <span>// leaq -32(%rbp), %rax</span>
+                                <span>// movq %rax, -8(%rbp)</span>
 
 <b># Defect Report #76 ############################################################</b>
 Dizinin bir ötesini işaret eden pointer geçerlidir.
 1993'te bu bile net değildi, komite kendi de emin değildi. C99 ile resmen çözüldü.
     int a[10];
-    int* n = NULL;      // movq $0, -8(%rbp)
-    int* p = &a[10];    // leaq -64(%rbp), %rax
-                        // addq $40, %rax
-                        // movq %rax, -8(%rbp)
-    p = &*n;            // movq -16(%rbp), %rax
-                        // movq %rax, -8(%rbp)
+    int* n = NULL;      <span>// movq $0, -8(%rbp)</span>
+    int* p = &a[10];    <span>// leaq -64(%rbp), %rax</span>
+                        <span>// addq $40, %rax</span>
+                        <span>// movq %rax, -8(%rbp)</span>
+    p = &*n;            <span>// movq -16(%rbp), %rax</span>
+                        <span>// movq %rax, -8(%rbp)</span>
 
 <b># Bütün Fonksiyonları Tutabilen Cast ###########################################</b>
 Adı üstünde void* ile tanımlanan bir işaretçi doğru cast ile bütün fonksiyonlar 
@@ -39,23 +46,23 @@ daha rahat yapılabiliyor. Kulağa ilk başta saçma geliyor ama çok fazla fonk
 işaretçisi ataması yapacağınız zaman gerekliliğini anlayabiliyorsunuz. Bunun ne 
 kadar işe yaradığını derleyicinin yaptığı optimizasyon ile daha rahat 
 anlayabilirsiniz.
-                                                       // .LC0:
-                                                       //   .string "World"
-                                                       // .LC1:
-                                                       //   .string "Hello, %s!\n"
-                                               // -O0 optimizasyon ile
-    void* f = printf;                                  // movq $printf, -8(%rbp)
-    ((void*(*)(void*,...))f)("Hello, %s!\n","World");  // movq -8(%rbp), %rdx
-                                                       // movl $.LC0, %esi
-                                                       // movl $.LC1, %edi
-                                                       // movl $0, %eax
-                                                       // call *%rdx
-                                               // -O3 optimizasyon ile
-    void* f = printf;                                  //
-    ((void*(*)(void*,...))f)("Hello, %s!\n","World");  // movl $.LC0, %esi
-                                                       // movl $.LC1, %edi
-                                                       // xorl %eax, %eax
-                                                       // jmp printf
+                                                       <span>// .LC0:</span>
+                                                       <span>//   .string "World"</span>
+                                                       <span>// .LC1:</span>
+                                                       <span>//   .string "Hello, %s!\n"</span>
+                                               <span>// -O0 optimizasyon ile</span>
+    void* f = printf;                                  <span>// movq $printf, -8(%rbp)</span>
+    ((void*(*)(void*,...))f)("Hello, %s!\n","World");  <span>// movq -8(%rbp), %rdx</span>
+                                                       <span>// movl $.LC0, %esi</span>
+                                                       <span>// movl $.LC1, %edi</span>
+                                                       <span>// movl $0, %eax</span>
+                                                       <span>// call *%rdx</span>
+                                               <span>// -O3 optimizasyon ile</span>
+    void* f = printf;                                  <span>//</span>
+    ((void*(*)(void*,...))f)("Hello, %s!\n","World");  <span>// movl $.LC0, %esi</span>
+                                                       <span>// movl $.LC1, %edi</span>
+                                                       <span>// xorl %eax, %eax</span>
+                                                       <span>// jmp printf</span>
 Standartlarda aslında bu kullanıma izin verilmiyor fakat POSIX uyumluluğu için 
 pratikte derleyiciler izin veriyor. C ABI'nin (System V AMD64) varlığı sayesinde 
 void* ile int return type olarak aynı registere gidiyor. Burada şunu anlamanızı 
@@ -65,31 +72,31 @@ Bunu ne kadar iyi anlarsak o kadar makineyi anlarız.
 <b># Değiştirilebilir Fonksiyon Structları ########################################</b>
 Bir struct yaratıp sonrasında fonksiyon üzerinden özelliklerini okumak bildiğimiz 
 bir pratiktir. fakat bunu değiştirebildiğimizi biliyor muydunuz?
-                                                    // i.0:
-                                                    //   .long 5
-                                                    //   .long 0
-                                                    //   .long 8
-                                                    //   .long 22
+                                                    <span>// i.0:</span>
+                                                    <span>//   .long 5</span>
+                                                    <span>//   .long 0</span>
+                                                    <span>//   .long 8</span>
+                                                    <span>//   .long 22</span>
     typedef struct INT {int x, y, z, w;} INT;
     INT* _INT() { 
         static INT i = {5, 0, 8, 22};
-        return &i;                                  // movl $i.0, %eax
-        //C23 standartı bu 
-        //tarz bir yazımı destekliyor
-        //return &(static INT){5, 0, 8, 22};
+        return &i;                                  <span>// movl $i.0, %eax</span>
+        <span>//C23 standartı bu</span>
+        <span>//tarz bir yazımı destekliyor</span>
+        <span>//return &(static INT){5, 0, 8, 22};</span>
     }
 
     int main() {
-                                            // -O0 optimizasyon ile
-        _INT()->y = 17;                             // call _INT
-                                                    // movl $17, 4(%rax)
-        int a = _INT()->y + 2;                      // call _INT
-                                                    // movl 4(%rax), %eax
-                                                    // addl $2, %eax
-                                                    // movl %eax, -4(%rbp)
+                                            <span>// -O0 optimizasyon ile</span>
+        _INT()->y = 17;                             <span>// call _INT</span>
+                                                    <span>// movl $17, 4(%rax)</span>
+        int a = _INT()->y + 2;                      <span>// call _INT</span>
+                                                    <span>// movl 4(%rax), %eax</span>
+                                                    <span>// addl $2, %eax</span>
+                                                    <span>// movl %eax, -4(%rbp)</span>
 
-                                            // -O3 optimizasyon ile
-        _INT()->y = 17;                             // movl $17, i.0+4(%rip)
+                                            <span>// -O3 optimizasyon ile</span>
+        _INT()->y = 17;                             <span>// movl $17, i.0+4(%rip)</span>
         int a = _INT()->y + 2;
 
         return 0;
@@ -101,8 +108,8 @@ _INT fonksiyonunu static yapmadığımız için derleyici bunu farklı dosyalard
 Nesne odaklı dilleri kullanıyorsanız bu terimi duymuş olabilirsiniz. Bunu C ile 
 yapmak oldukça basittir.
 
-    typedef struct INT {
-        int x;
+    typedef struct INT {                      <span>// her struct 4[+4]+8+8+8 byte</span>
+        int x;                                <span>// peşinden +4 padding</span>
         struct INT* (*set)(struct INT*, int);
         int         (*get)(struct INT*);
         struct INT* (*add)(struct INT*, int);
@@ -110,10 +117,11 @@ yapmak oldukça basittir.
     INT* __INT_set(INT* s, int a) {s->x = a; return s;}
     int  __INT_get(INT* s)        {return s->x;}
     INT* __INT_add(INT* s, int a) {s->x += a; return s;}
-    INT  __INT_new() {return (INT){0, __INT_set, __INT_get, __INT_add};}
+
+    INT newINT() {return (INT){0, __INT_set, __INT_get, __INT_add};}
 
     int main() {
-        INT i = __INT_new();
+        INT i = newINT();                     <span>// 32 byte'lık INT objesi</span>
         
         int t = i.set(&i, 5)->add(&i, 3)->get(&i);
         
@@ -130,4 +138,53 @@ registerlar üzerinden kendilerini gönderiyorlar.
         - Microsoft x64 çağırma kuralı (x86_64):   RCX
         - System V i386 ABI (32-bit):              stack
         - System V AMD64 ABI (x86_64):             RDI
+
+Fakat bu yöntemi kullanarak kendimize yeni bir problem yarattık. Şimdi her INT 
+yapımız 32byte yer kaplamakta. Bunların çoğu zaten aynı fonksiyonları tutmaya 
+gidiyor. Her zaman daha iyi bir yolu vardır. Bunun da var:
+
+    typedef struct __INT_VTABLE {
+        struct INT *(*set)(struct INT*, int);
+        int         (*get)(struct INT*);
+        struct INT *(*add)(struct INT*, int);
+    } __INT_VTABLE;
+
+    typedef struct INT {
+        int x;
+        __INT_VTABLE *vtbl; <span>// imzasını koyduk</span>
+    } INT;
+    INT *__INT_set(INT *s, int a) {s->x = a; return s;}
+    int  __INT_get(INT *s)        {return s->x;}
+    INT *__INT_add(INT *s, int a) {s->x += a; return s;}
+
+    <span>// bunu bir kere yaratıyoruz burası çok önemli</span>
+    __INT_VTABLE __int_vtable = {__INT_set, __INT_get, __INT_add};
+
+    INT newINT() {return (INT){0, &__int_vtable};} <span>// adresini gönderiyoruz.</span>
+
+    int main() {
+        INT i = newINT();
+
+        int t = i.vtbl->set(&i, 5)->vtbl->add(&i, 3)->vtbl->get(&i);
+
+        printf("%d\n", t);
+        return 0;
+    }
+
+Aaa. Bu neye benzedi böyle acaba? Fikrinizi alayım.
+...
+Evet doğru bildiniz Microsoftun COM mimarisine benzedi değil mi?
+Benzetemediniz mi? O zaman size bir örnek vereyim. Özellikle C ile yazıyorsanız 
+iyi anlayacaksınız.
+    Bizimki:
+        i.vtbl->set(&i, 5);
+    Direct3D9:
+        device->lpVtbl->BeginStateBlock(device);
+
+Peki aradaki fazladan işaretçi (->) niye var? Sebebi device değişkeninin özünde 
+böyle tanımlanmış olması:
+    IDirect3DDevice9* device;
+
+
+    
 </pre>
