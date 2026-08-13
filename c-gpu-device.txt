@@ -1,0 +1,45 @@
+Bir süredir düşünceler içerisindeyim. Çünkü Metal API kullanmaya başladım.
+Bir noktada çok hoşuma gitti çünkü kendi içinde MTLDevice yapısını o kadar iyi
+soyutlamış ki sen hiçbirşey görmüyorsun. Soyutlama katmanlarından bu kadar
+hoşlanmazken neden bunu sevdim peki? Aslında sebebi açık. Soyutlamayı çok yerinde
+yapmışlar. Uzun uzun boilerplate yazmıyorsun gereksiz uzun işleri kütüphaneye
+bırakıyorsun ve bence olması gereken en baştan beri buydu.
+
+Metal API'nin bu soyutlamadaki başarısı beni aklımdaki eski bir düşünceye geri
+itti. "Ortak GPU API'si yapmak". Kulağa komik gelebilir çünkü zaten bunun yeterince
+örneği var (bkz. WebGPU, SDL3 GPU). Fakat benim istediğim bu da değil. WebGPU
+kendi konumunda güzel bir iş yapmış olsa bile binlerce satır sadece header dosyası
+yeterince güzel bir dizayn fikri olarak gelmiyor bana. Çünkü zaten bu kadar uzun
+boilerplate yazma niyetine girdiysem native kullanırım diye düşünüyorum. Carmack'in
+bir sözüne alıntı yapmak istiyorum:
+> Ease of use is damn important. If you can program something in half the time,
+> you can ship earlier or explore more approaches. A clean, readable coding interface
+> also makes it easier to find / prevent bugs.
+
+Peki nasıl bir API yapmalıyız? Bunları düşünmeye başlamadan önce hedeflerimizi
+listelemek bizi doğru yola götürür diye düşünüyorum:
+
+Paradigma Bağımsız Olmalı
+    Ortak fikirlerde buluştuğumuz sürece kullanılan dilin önemini göremiyorum.
+    Önbellek problemleri ve GC gibi yapıların araya girmesi implemente edenin
+    sorumluluğundadır.
+
+Yüzey Alanı Minimal Olmalı
+    Kısaca kaç fonksiyon kullanarak ekrana üçgen çizebilirsin?
+
+Kapalı Yaşam Döngüsü ve Açık Sahiplik Olmamalı.
+    Ref counting ya da ARC kadar kapalı, malloc/free kadar da açık olmamalı.
+
+Backend'i Tamamen Gizlemek Geliştiriciye Hakarettir
+    Geliştirici donanım ve driver noktalarında rahatlık istiyor. Zaten hangi
+    apiyi kullanacağını bilmesi gerekir.
+
+Performans Şeffaflığı Olmalı
+    Hangi fonksiyonun arkada bellek ayırdığı, hangi fonksiyonun asenkron
+    çalıştığı, hangi fonksiyonun thread-safe olduğu açık olmalıdır.
+
+Doküman Çılgınlığı Olmamalı
+    Kodu yazan geliştirici sadece kütüphaneye bakarak neyin ne yaptığını
+    anlayabilmeli. Hiçkimse ama hiçkimse sürekli doküman ve editör arası
+    dolaşmayı sevmez.
+    Farkedileceği üzere bu son madde, önceki 4 maddenin doğal bir sonucu.
