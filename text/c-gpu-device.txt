@@ -43,3 +43,12 @@ Doküman Çılgınlığı Olmamalı
     anlayabilmeli. Hiçkimse ama hiçkimse sürekli doküman ve editör arası
     dolaşmayı sevmez.
     Farkedileceği üzere bu son madde, önceki 4 maddenin doğal bir sonucu.
+
+Ayrıca kendi soyutlama mimarimi tasarlarken bir şey hakkında düşündüm.
+Normalde her sistemin native api'sini kullanmaktan yanaydım.
+Sonuçta "soyutlama sızdırır" düşüncesi beni içten içe sarmıştı.
+Fakat sonrasında şunu düşündüm. "ben grafik ile ilgilenmiyorum aslında,
+gpu ile konuşmakla ilgileniyorum" o zaman daha büyük bir ortak katmanda
+soyutlayabileceğimi keşfettim. Bu düşünce ile bırak Vulkan ve DirectX'i,
+Vulkan ve PSX yapısını bile birleştirebilirsin. Ben buna kendi
+terminolojimde Driver-Design (DriDe) diyeceğim sanırım.
