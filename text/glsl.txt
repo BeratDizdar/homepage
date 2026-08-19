@@ -1,0 +1,95 @@
+Preprocessor Directive
+
+    #error: C ile aynı çalışıyor işte
+    #pragma
+
+        #pragma optimize(on)
+        #pragma optimize(off)
+        #pragma debug(on)
+        #pragma debug(off)
+
+    #version
+
+        #version <number> <profile_opt>
+
+        <number> := 300, 310, 320, 330, 460
+        <profile_opt> := core, compatibility, es
+    
+    #extension
+
+        #extension <extension_name> : <behavior>
+        #extension all : <behavior>
+
+        <extension_name> := işte eklenti ismi işte
+        <behavior> :=
+            require: desteklenmiyorsa derleyici hata verir.
+            enable: desteklenmiyorsa derleyici uyarı verir.
+            warn: uzantı açılır ama her kullanımda uyarı verir.
+            disable: kapatır işte.
+
+    #line: satırı belirliyorsun yazdığın satırın.
+
+Types
+
+    [qualifier] struct [name] { <member-list> } [declarators]
+
+Methods
+
+    <array>.length()
+
+Storage Qualifiers
+
+    <node: default>: yerel okuma/yazma belleği ya da bir fonksiyon parametresi.
+    const: değiştirilemez değişken.
+    in: shader'ın önceki aşamasından kopyalanan değişken
+    out: shader'ın sonraki aşaması için kopyalanacak değişken
+    attribute: compat only vertex in
+    uniform: API ve shader arasında bağlantı oluşturan değişken
+    varying: compat only vertex out, fragment in
+    buffer:
+    shared: compute shader only
+
+Uniform and Shader Storage Block Layout Qualifiers
+
+    layout(<qualifier-id>)
+    <qualifier-id> :=
+        shared
+        packed
+        std140: padding var.
+        std430: kompakt, uniform bufferda kullanılamaz.
+        row_major
+        column_major
+        binding = layout-qualifier-value
+        offset = layout-qualifier-value
+        align = layout-qualifier-value
+
+Memory Qualifiers
+
+    coherent: tutarlı?
+    volatile: dışarıdan değiştirilebilir.
+    restrict: dışarıdan değiştirilemez.
+    readonly: salt okunur.
+    writeonly: salt yazılır.
+
+Built-in Variables
+
+    Vertex Shader
+
+        in int gl_VertexID (OpenGL) / gl_VertexIndex (Vulkan):
+        
+            Shader'a verilen her vertexin temsili indexidir.
+        
+        in int gl_InstanceID (OpenGL) / gl_InstanceIndex (Vulkan):
+
+            Shader'a verilen her örneğin temsili indexidir.
+
+        in int gl_DrawID: glMultiDraw* kullanan fonksiyonda hangi id olduğu.
+        in int gl_BaseVertex:
+        in int gl_BaseInstance:
+
+        out gl_PerVertex {
+            vec4 gl_Position: homojenize vertex koordinatları.
+            float gl_PointSize: çizilecek noktanın piksel büyüklüğü.
+            float gl_ClipDistance[]:
+            float gl_CullDistance[]:
+        }
